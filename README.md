@@ -1,17 +1,17 @@
-<center>
+<div align="center">
   <img src="Group 1.png" width="100" height="100" alt="LOGO">
   <h1>MicrogirdSync</h1>
-</center>
+</div>
 
-<center>
+<div align="center">
   <p>Energy management of microgrids</p>
-</center>
+</div>
 
-<center>
+<div align="center">
 
 [![C#](https://img.shields.io/badge/C%23-10.0-orange?logo=c-sharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/) [![.NET Core 6.0](https://img.shields.io/badge/.NET%20Core-6.0-blue?logo=dot-net&logoColor=white)](https://dotnet.microsoft.com/download/dotnet/6.0) [![Blazor](https://img.shields.io/badge/Blazor-6.0-green?logo=blazor&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) [![SQL Server](https://img.shields.io/badge/SQL%20Server-2019-red?logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server/)
 
-</center>
+</div>
 
 Our project is about building Web-based GUI software devdlopment for energy management of microgrids.
 
