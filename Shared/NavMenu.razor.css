@@ -1,0 +1,62 @@
+.navbar-nav {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  background-image: url("/images/navbar.png");
+  background-repeat: no-repeat; /* 防止图片重复 */
+  height: 6rem;
+  align-items: center;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.navbar-expand-lg {
+  padding: 0;
+}
+
+.logo {
+  padding: 2rem 2rem;
+}
+
+.logo img {
+  width: 3.5rem;
+}
+
+.nav-link {
+  display: flex;
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+  height: 100%;
+  width: 6rem;
+  /* margin: 0 1.5rem; */
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+  background-color: #ae70ff;
+}
+
+.btn-outline-success {
+  border-color: #e4abff !important; /* 使用!important确保覆盖Bootstrap的样式 */
+  color: #e4abff;
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:focus,
+.btn-outline-success:active {
+  background-color: #994ff4; /* 当按钮处于hover、focus或active状态时，背景颜色也会更改 */
+  border-color: #994ff4;
+  color: #fff; /* 更改文字颜色以适应新的背景颜色 */
+}
+
+.d-flex {
+  margin-left: auto;
+  margin-right: 2rem;
+}
