@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="Group 1.png" width="100" height="100" alt="LOGO" style="margin: 20;">
+  <img src="Group 1.png" width="100" height="100" alt="LOGO">
   <h1>MicrogirdSync</h1>
 </div>
 
