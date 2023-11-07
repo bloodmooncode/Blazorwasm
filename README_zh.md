@@ -13,64 +13,77 @@
 
 </div>
 
-You can choose between these two languages for the readme file:
+你可以在这两种语言中选择其一来阅读 `readme` 文档:
 
 - [English](/README.md)
 - [中文](/Docs/README_zh.md)
 
-Our project is about building Web-based GUI software devdlopment for energy management of microgrids.
+我们的项目是为微电网的能源管理构建基于 web 的 GUI 软件开发。
 
-- [UI design](#ui-design)
-- [Frontend](#frontend)
-  - [Frontend Interface](#frontend-interface)
-  - [Front-end Implementation](#front-end-implementation)
-- [Backend](#backend)
-  - [KeyWord Definition](#keyword-definition)
-  - [Functional Requirement List](#functional-requirement-list)
-  - [Back-end Functional Design Graph](#back-end-functional-design-graph)
+- [UI 设计](#ui-设计)
+- [前端相关](#前端相关)
+  - [前端接口设计图](#前端接口设计图)
+  - [前端实现](#前端实现)
+    - [获取并显示 opcua 数据](#获取并显示-opcua-数据)
+- [后端相关](#后端相关)
+  - [关键词定义](#关键词定义)
+  - [项目功能需求列表](#项目功能需求列表)
+  - [后端功能接口设计图](#后端功能接口设计图)
 
-## UI design
+## UI 设计
 
-Use figma as the design tool for user interface, logo, spectial elements.. Just give some page blocks reference for frontend. Various component libraries are used in the actual front-end writing process like bootstrap, tailwindcss, ant-ui-design etc.
+使用 `figma` 作为用户界面，标志，特殊元素的设计工具。只是画出一些页面块的参考。在实际的前端编写过程中使用了各种组件库，如 [bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+, [tailwindcss](https://tailwindcss.com/docs/installation), [antv-G2](https://g2.antv.antgroup.com/) 等。
 
 ![Alt text](./assets/UI-design.png)
 
-## Frontend
+## 前端相关
 
-Use CSharp plus Blazor WebAssembly to finish the frontend of our project.
+使用 `CSharp` 以及 `Blazor WebAssembly` 模板来完成项目前端逻辑
 
-### Frontend Interface
+### 前端接口设计图
 
 ![Alt text](./assets/interface-tree.png)
 
-### Front-end Implementation
+### 前端实现
 
-Some data are from Open Platform Communications Unified Architecture (OPC UA), object types define a set of common properties, methods, and events for objects. Object types act as templates for creating instances of objects with the same characteristics. The template is called Based Node Class, which has some characteristics showed below.
+#### 获取并显示 opcua 数据
+
+一些数据来自于开放平台通信统一架构（OPC UA），对象类型定义了一组通用属性、方法和对象的事件。对象类型充当了创建具有相同特性的对象实例的模板。该模板被称为“根节点类”，具有以下一些特征。
 
 ```
-Mandatory Characteristics
+必要特征
 1. Node Id
 2. Display Name
 3. Node Class
 4. Browse Name
 
-Optional Characteristics
+可选特征
 1. Description
 ```
 
-And Based Node derives these eight types, from which to combine as needed to present different structure microgrids.
+基于根节点派生出这八种节点类型，可以根据需要组合它们以呈现不同结构的微电网。
 
 ![Alt text](./assets/opcua-structure.png)
-Custom Information Model can be built based on OPC UA Base Information Model. Use TextEditor(Choose `VScode`) and Graphical Tools(Choose `UaModeler for mac`) to form XML file
+自定义信息模型可以基于 OPC UA 基本信息模型构建。使用文本编辑器（选择`VScode`）和图形工具（选择`UaModeler for mac`）来创建 XML 文件。
 
-See this XML example:
+具体 XML 文件内容示例:
 ![Alt text](./assets/nodeset2-xml1.png)
 ![Alt text](./assets/nodeset2-xml2.png)
 ![Alt text](./assets/nodeset2-xml3.png)
 
-## Backend
+生成最终 XML 文件的步骤如下：
 
-### KeyWord Definition
+1. 编写 `ModelDesign.xml`
+
+2. 使用 [UA-ModelCompiler](https://github.com/OPCFoundation/UA-ModelCompiler) 辅助将`ModelDesign.xml` 生成 `NodeSet2.xml` 这一步 git
+   clone 之后 release 模式运行 solution `.sin`, win 环境会生成.exe 可执行文件, mac 环境会生成.dll.
+
+3.
+
+## 后端相关
+
+### 关键词定义
 
 | 序号 | 名词      | 解释                     |
 | ---- | --------- | ------------------------ |
@@ -80,7 +93,7 @@ See this XML example:
 | 4    | ESS       | 储能系统                 |
 | 5    | SOC       | 储能系统（ESS）的储电量  |
 
-### Functional Requirement List
+### 项目功能需求列表
 
 | 序号 | 模块                 | 功能                            | 功能规则                                                                                                                                                                                                                                                                                                                                                              |
 | ---- | -------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -116,6 +129,6 @@ See this XML example:
 | 30   | 数据服务端           | 优化电力数据                    | 数据服务端读取微电网的数据，传递给优化器，从优化器读取优化结果，将优化结果传递给微电网<br />【更多细节等待完善】                                                                                                                                                                                                                                                      |
 | 31   |                      | 连接微电网设备                  | 数据服务端使用 OPCUA 协议，访问微电网中各个组件的 OPCUA 地址，发送指令或者读取数据<br />【更多细节等待完善】                                                                                                                                                                                                                                                          |
 
-### Back-end Functional Design Graph
+### 后端功能接口设计图
 
 ![Alt text](./assets/database-tree.png)
