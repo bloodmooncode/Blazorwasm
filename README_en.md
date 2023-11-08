@@ -27,7 +27,7 @@ Our project is about building Web-based GUI software devdlopment for energy mana
 - [Backend](#backend)
   - [KeyWord Definition](#keyword-definition)
   - [Functional Requirement List](#functional-requirement-list)
-  - [Back-end Functional Design Graph](#back-end-functional-design-graph)
+  - [Back-end Functional Design](#back-end-functional-design)
 
 ## UI design
 
@@ -116,6 +116,8 @@ See this XML example:
 | 30   | 数据服务端           | 优化电力数据                    | 数据服务端读取微电网的数据，传递给优化器，从优化器读取优化结果，将优化结果传递给微电网<br />【更多细节等待完善】                                                                                                                                                                                                                                                      |
 | 31   |                      | 连接微电网设备                  | 数据服务端使用 OPCUA 协议，访问微电网中各个组件的 OPCUA 地址，发送指令或者读取数据<br />【更多细节等待完善】                                                                                                                                                                                                                                                          |
 
-### Back-end Functional Design Graph
+### Back-end Functional Design
+
+[后端 API 设计文档](./Docs/api_backend.md)
 
 ![Alt text](./assets/database-tree.png)
