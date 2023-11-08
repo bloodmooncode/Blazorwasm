@@ -16,7 +16,7 @@
 You can choose between these two languages for the readme file:
 
 - [English](/README.md)
-- [中文](/Docs/README_zh.md)
+- [中文](./README_zh.md)
 
 Our project is about building Web-based GUI software devdlopment for energy management of microgrids.
 

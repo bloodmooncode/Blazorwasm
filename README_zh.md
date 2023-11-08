@@ -16,7 +16,7 @@
 你可以在这两种语言中选择其一来阅读 `readme` 文档:
 
 - [English](/README.md)
-- [中文](/README_zh.md)
+- [中文](./README_zh.md)
 
 我们的项目是为微电网的能源管理构建基于 web 的 GUI 软件开发。
 
