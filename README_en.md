@@ -118,6 +118,6 @@ See this XML example:
 
 ### Back-end Functional Design
 
-[后端 API 设计文档](./Docs/api_backend.md)
+[Server API](./Docs/api_backend.md)
 
 ![Alt text](./assets/database-tree.png)
