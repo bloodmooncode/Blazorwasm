@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets/css/open-iconic/font/fonts/open-iconic.woff"
     },
     {
+      "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/css/tailwind/tailwind.css",
+      "PackagePath": "staticwebassets/css/tailwind/tailwind.css"
+    },
+    {
+      "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/css/tailwind/tailwind.min.css",
+      "PackagePath": "staticwebassets/css/tailwind/tailwind.min.css"
+    },
+    {
       "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/favicon.png",
       "PackagePath": "staticwebassets/favicon.png"
     },

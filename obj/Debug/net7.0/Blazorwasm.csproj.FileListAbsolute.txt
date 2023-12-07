@@ -831,3 +831,5 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/SignPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/LoginPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/MainBoard.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package-lock.json
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package.json

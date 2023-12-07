@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1nZwBNHMs2pC/kmU0lOskznEErQNdGt3ybMx50w+YSk=",
+  "Hash": "YI5jD4kRNZwS4bJd53yP/ycFEDv0QdOdrlosCtKBbyQ=",
   "Source": "Blazorwasm",
   "BasePath": "/",
   "Mode": "Root",
@@ -7121,6 +7121,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/open-iconic/README.md"
+    },
+    {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/css/tailwind/tailwind.css",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "css/tailwind/tailwind.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/tailwind/tailwind.css"
+    },
+    {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/css/tailwind/tailwind.min.css",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "css/tailwind/tailwind.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/tailwind/tailwind.min.css"
     },
     {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/favicon.png",

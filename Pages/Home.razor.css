@@ -12,13 +12,6 @@ a {
   background-repeat: no-repeat; /* 防止图片重复 */
 }
 
-button {
-  background: none; /* 重置背景 */
-  border: none; /* 重置边框 */
-  padding: 0; /* 重置内边距 */
-  margin: 0; /* 重置外边距 */
-}
-
 .content {
   align-items: center;
 }
