@@ -1,26 +1,35 @@
-﻿<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a href="/homepage" class = "logo">
-            <img src="/images/logo.png" alt="Website Logo">
-        </a>
-        <a class="nav-link" href="/panel1">Panel1</a>
-        <a class="nav-link" href="/panel2">Panel2</a>
-        <a class="nav-link" href="/panel3">Panel3</a>
-        <a class="nav-link" href="/panel4">Panel4</a>
+﻿<div style="height:100vh">
 
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">BlazorApp</a>
+            @* <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button> *@
+        </div>
     </div>
-  </div>
-</nav>
+
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/home" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> News
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/project" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Project
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/home" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+        </nav>
+    </div>
+</div>
+
 
 @code {
     private bool collapseNavMenu = true;

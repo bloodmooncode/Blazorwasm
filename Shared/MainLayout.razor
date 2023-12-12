@@ -1,14 +1,35 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
 
-<div class="page">
-    @* <div class="sidebar">
-    </div> *@
 
-    <main>
-        @* <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div> *@
+@if (CurrentRoute.EndsWith("/login"))
+{
+    @Body
+}
+else if (CurrentRoute.EndsWith("/register"))
+{
+    @Body
+}
+else if (CurrentRoute.EndsWith("/home"))
+{
+    @Body
+}
+else {
+    <div class="d-flex flex-column h-100">
+        <TopBar />
+        <div class="flex-grow-1" style="margin-top: 7rem;">
+            @Body
+        </div>
+    </div>
+}
 
-        @Body
-    </main>
-</div>
+@code {
+    private bool expanded = true;
+
+    private void ToggleExpand()
+    {
+        expanded = !expanded;
+    }
+
+    private string CurrentRoute => Navigation.Uri;
+}

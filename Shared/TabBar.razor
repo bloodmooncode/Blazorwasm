@@ -1,0 +1,34 @@
+<!-- Nav tabs -->
+<div class="">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class='nav-link @GetActiveClass("news")' id="news-tab" @onclick='() => SetActiveTab("news")' href="/news">News</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class='nav-link @GetActiveClass("project-tab")' id="news-tab" @onclick='() => SetActiveTab("project-tab")' href="/project">Project</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class='nav-link @GetActiveClass("dashboard-tab")' id="news-tab" @onclick='() => SetActiveTab("dashboard-tab")' href="/dashboard">Dashboard</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class='nav-link @GetActiveClass("about-tab")' id="news-tab" @onclick='() => SetActiveTab("about-tab")' href="/about">About</a>
+    </li>
+  </ul>
+</div>
+
+
+@code {
+    private string activeTab = "news";
+    private string GetActiveClass(string tabName)
+    {
+        return activeTab == tabName ? "active" : string.Empty;
+    }
+    private void SetActiveTab(string tabName)
+    {
+        activeTab = tabName;
+    }
+}
+
+
+
+

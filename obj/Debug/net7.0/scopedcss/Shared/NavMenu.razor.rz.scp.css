@@ -1,62 +1,62 @@
-.navbar-nav[b-muvk81s5xl] {
-  margin: 0;
-  display: flex;
-  width: 100%;
-  padding: 0;
-  background-image: url("/images/navbar.png");
-  background-repeat: no-repeat; /* 防止图片重复 */
-  height: 6rem;
-  align-items: center;
+.navbar-toggler[b-muvk81s5xl] {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.container-fluid[b-muvk81s5xl] {
-  padding: 0;
+.top-row[b-muvk81s5xl] {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
 }
 
-.navbar-expand-lg[b-muvk81s5xl] {
-  padding: 0;
+.navbar-brand[b-muvk81s5xl] {
+    font-size: 1.1rem;
 }
 
-.logo[b-muvk81s5xl] {
-  padding: 2rem 2rem;
+.oi[b-muvk81s5xl] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
 }
 
-.logo img[b-muvk81s5xl] {
-  width: 3.5rem;
+.nav-item[b-muvk81s5xl] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
 }
 
-.nav-link[b-muvk81s5xl] {
-  display: flex;
-  font-size: 1rem;
-  color: white;
-  font-weight: 600;
-  height: 100%;
-  width: 6rem;
-  /* margin: 0 1.5rem; */
-  align-items: center;
-  justify-content: center;
+    .nav-item:first-of-type[b-muvk81s5xl] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-muvk81s5xl] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-muvk81s5xl]  a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item[b-muvk81s5xl]  a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
 }
 
-.nav-link:hover[b-muvk81s5xl],
-.nav-link:focus[b-muvk81s5xl],
-.nav-link:active[b-muvk81s5xl] {
-  background-color: #ae70ff;
+.nav-item[b-muvk81s5xl]  a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
 }
 
-.btn-outline-success[b-muvk81s5xl] {
-  border-color: #e4abff !important; /* 使用!important确保覆盖Bootstrap的样式 */
-  color: #e4abff;
-}
+@media (min-width: 641px) {
+    .navbar-toggler[b-muvk81s5xl] {
+        display: none;
+    }
 
-.btn-outline-success:hover[b-muvk81s5xl],
-.btn-outline-success:focus[b-muvk81s5xl],
-.btn-outline-success:active[b-muvk81s5xl] {
-  background-color: #994ff4; /* 当按钮处于hover、focus或active状态时，背景颜色也会更改 */
-  border-color: #994ff4;
-  color: #fff; /* 更改文字颜色以适应新的背景颜色 */
-}
-
-.d-flex[b-muvk81s5xl] {
-  margin-left: auto;
-  margin-right: 2rem;
+    .collapse[b-muvk81s5xl] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
 }
