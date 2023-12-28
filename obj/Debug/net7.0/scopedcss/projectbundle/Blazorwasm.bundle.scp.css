@@ -1,3 +1,19 @@
+/* /Pages/Dashboard.razor.rz.scp.css */
+.wrapper[b-iqhivbqyyt] {
+  display: flex;
+}
+
+.diagram-container[b-iqhivbqyyt] {
+  flex: 1;
+  height: calc(100vh);
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
+}
 /* /Pages/Home.razor.rz.scp.css */
 a[b-yjll2uz27b] {
   text-decoration: none;
@@ -188,7 +204,7 @@ h1[b-yjll2uz27b] {
 
 .div-container[b-l3wd5tknof] {
   display: flex;
-  flex-direction: column;
+  flex-direction: Column;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   margin-top: 2rem;
@@ -378,7 +394,7 @@ button[b-aof8btv1cw] {
 
 .div-container[b-aof8btv1cw] {
   display: flex;
-  flex-direction: column;
+  flex-direction: Column;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   margin-top: 2rem;
@@ -395,7 +411,7 @@ hr[b-aof8btv1cw] {
 .page[b-43oo3m9f90] {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: Column;
 }
 
 main[b-43oo3m9f90] {
@@ -476,6 +492,21 @@ main[b-43oo3m9f90] {
     padding-left: 2rem !important;
     padding-right: 1.5rem !important;
   }
+}
+.wrapper[b-43oo3m9f90] {
+  display: flex;
+}
+
+.diagram-container[b-43oo3m9f90] {
+  flex: 1;
+  height: calc(100vh - 56.59px);
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-muvk81s5xl] {

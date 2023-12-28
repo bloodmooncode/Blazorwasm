@@ -4,20 +4,26 @@
 
 @if (CurrentRoute.EndsWith("/login"))
 {
-    @Body
+    <div class="d-flex flex-column h-100">
+        @Body
+    </div>
 }
-else if (CurrentRoute.EndsWith("/register"))
+else if (CurrentRoute.EndsWith("/signup"))
 {
-    @Body
+    <div class="d-flex flex-column h-100">
+        @Body
+    </div>
 }
 else if (CurrentRoute.EndsWith("/home"))
 {
-    @Body
+    <div class="d-flex flex-column h-100">
+        @Body
+    </div>
 }
 else {
     <div class="d-flex flex-column h-100">
         <TopBar />
-        <div class="flex-grow-1" style="margin-top: 7rem;">
+        <div class="flex-grow-1">
             @Body
         </div>
     </div>

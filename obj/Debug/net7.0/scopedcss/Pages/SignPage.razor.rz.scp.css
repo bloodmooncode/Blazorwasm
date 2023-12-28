@@ -129,7 +129,7 @@ button[b-aof8btv1cw] {
 
 .div-container[b-aof8btv1cw] {
   display: flex;
-  flex-direction: column;
+  flex-direction: Column;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   margin-top: 2rem;

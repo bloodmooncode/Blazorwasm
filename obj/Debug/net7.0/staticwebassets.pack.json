@@ -13,10 +13,6 @@
       "PackagePath": "staticwebassets/Blazorwasm.styles.css"
     },
     {
-      "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/.DS_Store",
-      "PackagePath": "staticwebassets/.DS_Store"
-    },
-    {
       "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/css/app.css",
       "PackagePath": "staticwebassets/css/app.css"
     },
@@ -71,10 +67,6 @@
     {
       "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/icon-192.png",
       "PackagePath": "staticwebassets/icon-192.png"
-    },
-    {
-      "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/.DS_Store",
-      "PackagePath": "staticwebassets/images/.DS_Store"
     },
     {
       "Id": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/about.png",

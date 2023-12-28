@@ -1,4 +1,6 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/blazor.boot.json
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazor.Diagrams.Core.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazor.Diagrams.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/blazor.webassembly.js
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazorwasm.pdb
@@ -38,6 +40,8 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Microsoft.Win32.Registry.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/mscorlib.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/netstandard.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/SvgPathProperties.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.AppContext.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Buffers.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Collections.Concurrent.dll
@@ -250,6 +254,7 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Globalization.Extensions.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Numerics.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Private.Uri.dll.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Threading.Tasks.Parallel.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Reflection.Emit.ILGeneration.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Microsoft.Extensions.FileProviders.Abstractions.dll.gz
@@ -292,6 +297,7 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Runtime.Serialization.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Xml.XPath.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/icudt_EFIGS.dat.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazor.Diagrams.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Net.Ping.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Microsoft.Extensions.Configuration.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Text.RegularExpressions.dll.gz
@@ -322,6 +328,7 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.ServiceProcess.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Globalization.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Microsoft.AspNetCore.Components.Forms.dll.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/SvgPathProperties.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Reflection.TypeExtensions.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.ComponentModel.TypeConverter.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/dotnet.7.0.13.9r0tot8edo.js.gz
@@ -375,6 +382,7 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Net.ServicePoint.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Diagnostics.Tracing.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Net.Sockets.dll.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazor.Diagrams.Core.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Text.Encodings.Web.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Runtime.InteropServices.JavaScript.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Private.CoreLib.dll.gz
@@ -401,6 +409,8 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/Blazorwasm.pdb.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Security.Cryptography.Encoding.dll.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/wwwroot/_framework/System.Windows.dll.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package-lock.json
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package.json
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Blazorwasm.staticwebassets.runtime.json
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Blazorwasm.pdb
@@ -426,7 +436,11 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.Extensions.Primitives.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.JSInterop.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.JSInterop.WebAssembly.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/SvgPathProperties.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/System.IO.Pipelines.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Blazor.Diagrams.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Blazor.Diagrams.Core.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.CSharp.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.VisualBasic.Core.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/Microsoft.VisualBasic.dll
@@ -630,7 +644,11 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/DmEBU+3d.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/eRDexFqX.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/d4WPGtva.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/BcGFMsXn.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/LimB7gSL.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/taRb+xWw.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/I8WFJktX.gz
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/uCliKaII.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/2RD6KPbv.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/6Is10O4f.gz
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/build-gz/eQtW1OSL.gz
@@ -817,7 +835,15 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/staticwebassets.pack.json
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/staticwebassets.build.json
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/staticwebassets.development.json
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/Dashboard.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/Home.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/LoginPage.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/MainBoard.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/MainPage.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/SignPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Shared/MainLayout.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Shared/NavMenu.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Shared/TabBar.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/bundle/Blazorwasm.styles.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/projectbundle/Blazorwasm.bundle.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/Blazorwasm.csproj.CopyComplete
@@ -825,12 +851,3 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/refint/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/Blazorwasm.pdb
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/ref/Blazorwasm.dll
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/Home.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/MainPage.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/SignPage.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/LoginPage.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Pages/MainBoard.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package-lock.json
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/bin/Debug/net7.0/package.json
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Shared/NavMenu.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net7.0/scopedcss/Shared/TabBar.razor.rz.scp.css

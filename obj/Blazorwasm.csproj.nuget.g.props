@@ -13,6 +13,7 @@
     <SourceRoot Include="/Users/zhangyuanpu/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)z.blazor.diagrams/3.0.1/buildTransitive/Z.Blazor.Diagrams.props" Condition="Exists('$(NuGetPackageRoot)z.blazor.diagrams/3.0.1/buildTransitive/Z.Blazor.Diagrams.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly/7.0.12/build/net7.0/Microsoft.AspNetCore.Components.WebAssembly.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly/7.0.12/build/net7.0/Microsoft.AspNetCore.Components.WebAssembly.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">

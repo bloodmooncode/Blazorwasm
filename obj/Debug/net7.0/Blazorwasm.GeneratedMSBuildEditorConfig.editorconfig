@@ -24,10 +24,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWJvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Dashboard.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaGJvYXJkLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TableColumn.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RhYmxlQ29sdW1uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TopBar.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RvcEJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -63,6 +63,10 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-iqhivbqyyt
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==

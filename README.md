@@ -32,7 +32,7 @@
 
 ## UI 设计
 
-使用 `figma` 作为用户界面，标志，特殊元素的设计工具。只是画出一些页面块的参考。在实际的前端编写过程中使用了各种组件库，如 [bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+使用 `figma` 作为用户界面，标志，特殊元素的设计工具。只是画出一些页面块的参考。在实际的前端编写过程中尝试了各种组件库，如 [bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 , [tailwindcss](https://tailwindcss.com/docs/installation), [antv-G2](https://g2.antv.antgroup.com/) 等。
 
 ![Alt text](./assets/UI-design.png)

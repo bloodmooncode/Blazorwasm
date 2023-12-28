@@ -1,7 +1,7 @@
 .page[b-43oo3m9f90] {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: Column;
 }
 
 main[b-43oo3m9f90] {
@@ -82,4 +82,19 @@ main[b-43oo3m9f90] {
     padding-left: 2rem !important;
     padding-right: 1.5rem !important;
   }
+}
+.wrapper[b-43oo3m9f90] {
+  display: flex;
+}
+
+.diagram-container[b-43oo3m9f90] {
+  flex: 1;
+  height: calc(100vh - 56.59px);
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
 }

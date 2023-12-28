@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "U0QH/b5q4OY3ICz1mrGhK8VOJ+5syYuKNDt9MgQBkE7qD76PnBV7EeLvvyC2sQVNAtETkERxnCyttyAsJANEnw==",
+  "dgSpecHash": "awPuL2Mu4EuuK1RA94UoTo/MX/nLuIKsCIS0KCUqTke4bH5zqJyLF5SkbULAVSdLQCS0thpuHACqcHN3pvbI4Q==",
   "success": true,
   "projectFilePath": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Blazorwasm.csproj",
   "expectedPackageFiles": [
@@ -28,9 +28,14 @@
     "/Users/zhangyuanpu/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/Users/zhangyuanpu/.nuget/packages/microsoft.jsinterop/7.0.12/microsoft.jsinterop.7.0.12.nupkg.sha512",
     "/Users/zhangyuanpu/.nuget/packages/microsoft.jsinterop.webassembly/7.0.12/microsoft.jsinterop.webassembly.7.0.12.nupkg.sha512",
+    "/Users/zhangyuanpu/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/zhangyuanpu/.nuget/packages/svgpathproperties/1.1.2/svgpathproperties.1.1.2.nupkg.sha512",
     "/Users/zhangyuanpu/.nuget/packages/system.io.pipelines/7.0.0/system.io.pipelines.7.0.0.nupkg.sha512",
+    "/Users/zhangyuanpu/.nuget/packages/system.net.http.json/5.0.0/system.net.http.json.5.0.0.nupkg.sha512",
     "/Users/zhangyuanpu/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
-    "/Users/zhangyuanpu/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512"
+    "/Users/zhangyuanpu/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
+    "/Users/zhangyuanpu/.nuget/packages/z.blazor.diagrams/3.0.1/z.blazor.diagrams.3.0.1.nupkg.sha512",
+    "/Users/zhangyuanpu/.nuget/packages/z.blazor.diagrams.core/3.0.1/z.blazor.diagrams.core.3.0.1.nupkg.sha512"
   ],
   "logs": []
 }
