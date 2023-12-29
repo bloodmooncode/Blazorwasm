@@ -7,7 +7,6 @@
 @using Blazor.Diagrams.Extensions;
 @using Blazorwasm.Models;
 
-
 <div class="sidebar">
     @if (_selectedTable == null)
     {
@@ -18,7 +17,7 @@
     else
     {
         <div class="form-group">
-            <label for="tableName">Table name</label>
+            <label for="tableName" class="fw-bold mb-2">Table name</label>
             <input id="tableName" type="text" class="form-control" value="@_selectedTable.Name" @oninput="OnTableNameChanged" />
         </div>
         <table class="table table-hover">
@@ -47,13 +46,13 @@
                 }
             </tbody>
         </table>
-        <div class="float-right">
-            <button class="btn btn-primary" @onclick="OnAddBtnClicked">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button class="btn btn-danger" @onclick="OnDeleteBtnClicked" disabled="@(_selectedColumn == null)">
-                <i class="fa fa-trash"></i>
-            </button>
+        <div class="float-right d-flex justify-content-between px-2">
+            <div @onclick="OnAddBtnClicked" style="cursor: pointer;">
+                <i class="bi-plus-circle" style="font-size: 1.5rem; color:#2066F1"></i>
+            </div>
+            <div @onclick="OnDeleteBtnClicked" style="cursor: pointer;" disabled="@(_selectedColumn == null)">
+                <i class="bi bi-trash3" style="font-size: 1.5rem; color:#C234FF"></i>
+            </div>
         </div>
     }
 </div>
