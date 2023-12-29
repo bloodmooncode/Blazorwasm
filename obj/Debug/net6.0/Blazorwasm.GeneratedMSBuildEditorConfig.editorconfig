@@ -98,6 +98,10 @@ build_metadata.AdditionalFiles.CssScope = b-43oo3m9f90
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-muvk81s5xl
 
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/SideBar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1NpZGVCYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5l13u3u4va
+
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TabBar.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RhYkJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-z2g3hld6u1

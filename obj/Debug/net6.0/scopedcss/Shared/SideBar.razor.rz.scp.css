@@ -1,0 +1,20 @@
+.sidebar[b-5l13u3u4va] {
+  width: 350px;
+  height: calc(100vh - 56.59px);
+  background-color: #f8f9fa;
+  border-left: 1px solid #a9afb8;
+  padding: 1rem;
+}
+
+select.column-type[b-5l13u3u4va] {
+  width: 120px;
+}
+
+tr[b-5l13u3u4va] {
+  cursor: pointer;
+}
+
+tr.active[b-5l13u3u4va] {
+  color: #343a40;
+  background-color: rgba(0, 0, 0, 0.075);
+}
