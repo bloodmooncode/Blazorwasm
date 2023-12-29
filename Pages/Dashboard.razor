@@ -8,16 +8,19 @@
 @using Blazor.Diagrams.Core.Routers;
 @using Blazor.Diagrams.Options;
 @using Blazor.Diagrams.Components;
+@using Blazorwasm.Models;
+@using Blazorwasm.Shared;
 
 
 <div class="clickable" @onclick="AddNode" style="margin-top: 5rem; cursor: pointer;">Add</div>
 
 <div class="wrapper">
-    <div class="diagram-container" IsFixed="true">
-        <CascadingValue Value="Diagram">
+    <CascadingValue Value="Diagram">
+        <div class="diagram-container">
             <DiagramCanvas></DiagramCanvas>
-        </CascadingValue>
-    </div>
+        </div>
+        <SideBar></SideBar>
+    </CascadingValue>
 </div>
 
 @code {
@@ -41,14 +44,9 @@
 
         Diagram = new BlazorDiagram(options);
 
-        var firstNode = Diagram.Nodes.Add(new NodeModel(position: new Point(50, 50))
-        {
-            Title = "Node 1"
-        });
-        var secondNode = Diagram.Nodes.Add(new NodeModel(position: new Point(200, 100))
-        {
-            Title = "Node 2"
-        });
+        var firstNode = Diagram.Nodes.Add(new Table());
+        var secondNode = Diagram.Nodes.Add(new Table());
+        
         var leftPort = secondNode.AddPort(PortAlignment.Left);
         var rightPort = secondNode.AddPort(PortAlignment.Right);
 
@@ -64,10 +62,7 @@
 @code {
     private void AddNode()
     {
-        var newnode = Diagram.Nodes.Add(new NodeModel(position: new Point(50, 50))
-        {
-            Title = "Node"
-        });
+        var newnode = Diagram.Nodes.Add(new Table());
         var TopPort = newnode.AddPort(PortAlignment.Top);
         var BottomPort = newnode.AddPort(PortAlignment.Bottom);
     }

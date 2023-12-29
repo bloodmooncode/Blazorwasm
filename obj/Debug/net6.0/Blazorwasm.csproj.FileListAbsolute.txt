@@ -833,3 +833,4 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/Blazorwasm.pdb
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/ref/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/SideBar.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/TableNode.razor.rz.scp.css

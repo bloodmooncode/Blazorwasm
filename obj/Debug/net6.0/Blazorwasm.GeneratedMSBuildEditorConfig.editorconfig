@@ -105,3 +105,7 @@ build_metadata.AdditionalFiles.CssScope = b-5l13u3u4va
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TabBar.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RhYkJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-z2g3hld6u1
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TableNode.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RhYmxlTm9kZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-9na8k5luq7

@@ -621,3 +621,48 @@ tr.active[b-5l13u3u4va] {
   color: rgb(43, 43, 43); /* 更改鼠标悬停时的文字颜色 */
   transform: translateY(-3px); /* 鼠标悬停时向上移动 */
 }
+/* /Shared/TableNode.razor.rz.scp.css */
+.fully-transparent[b-9na8k5luq7] {
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown > a[b-9na8k5luq7] {
+  color: black;
+}
+
+.node > .card.selected[b-9na8k5luq7] {
+  border: 1px #4582ec solid;
+}
+
+.list-group[b-9na8k5luq7] {
+  border-bottom: unset;
+}
+
+[b-9na8k5luq7] .port {
+  width: 20px;
+  height: 46px;
+  position: absolute;
+}
+
+[b-9na8k5luq7] .port:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.node > .card.selected[b-9na8k5luq7]  .port {
+  border-right-color: #4582ec;
+  border-left-color: #4582ec;
+}
+
+[b-9na8k5luq7] .port.right {
+  top: 45px;
+  right: -1px;
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+[b-9na8k5luq7] .port.left {
+  top: 0;
+  left: -1px;
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+}
