@@ -1,19 +1,3 @@
-/* /Pages/Dashboard.razor.rz.scp.css */
-.wrapper[b-iqhivbqyyt] {
-  display: flex;
-}
-
-.diagram-container[b-iqhivbqyyt] {
-  flex: 1;
-  height: calc(100vh);
-  background-size: 40px 40px;
-  background-image: linear-gradient(
-      to right,
-      rgb(0, 0, 0, 0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
-}
 /* /Pages/Home.razor.rz.scp.css */
 a[b-yjll2uz27b] {
   text-decoration: none;
@@ -406,6 +390,22 @@ hr[b-aof8btv1cw] {
   background-color: #ffffff; /* 定义线的颜色 */
   width: 80%; /* 定义线的宽度，可以根据需要调整 */
   margin: 5px auto; /* 使线居中并在上下添加间距 */
+}
+/* /Pages/Workspace.razor.rz.scp.css */
+.wrapper[b-sp4j8iud00] {
+  display: flex;
+}
+
+.diagram-container[b-sp4j8iud00] {
+  flex: 1;
+  height: calc(100vh);
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgb(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-43oo3m9f90] {

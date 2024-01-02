@@ -48,6 +48,14 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
+            "Syncfusion.Blazor.Core": {
+              "target": "Package",
+              "version": "[24.1.43, )"
+            },
+            "Syncfusion.Blazor.Diagram": {
+              "target": "Package",
+              "version": "[24.1.43, )"
+            },
             "Z.Blazor.Diagrams": {
               "target": "Package",
               "version": "[3.0.1, )"

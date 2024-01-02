@@ -17,8 +17,18 @@ namespace Blazorwasm.Models
                 },
                 new Column
                 {
-                    Name = "Test",
+                    Name = "Number",
                     Type = ColumnType.Integer
+                },
+                new Column
+                {
+                    Name = "Name",
+                    Type = ColumnType.String
+                },
+                new Column
+                {
+                    Name = "Description",
+                    Type = ColumnType.String
                 }
             };
 

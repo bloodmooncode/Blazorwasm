@@ -1,6 +1,7 @@
 ﻿using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Core.Models.Base;
 using System.Text.Json.Serialization;
+using Blazor.Diagrams.Core.Anchors;
 
 namespace Blazorwasm.Models
 {
