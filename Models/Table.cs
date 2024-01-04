@@ -13,22 +13,26 @@ namespace Blazorwasm.Models
                 {
                     Name = "Id",
                     Type = ColumnType.Integer,
-                    Primary = true
+                    Primary = true,
+                    Value = "1"
                 },
                 new Column
                 {
-                    Name = "Number",
-                    Type = ColumnType.Integer
+                    Name = "Type",
+                    Type = ColumnType.String,
+                    Value = "CDG"
                 },
                 new Column
                 {
-                    Name = "Name",
-                    Type = ColumnType.String
+                    Name = "Value",
+                    Type = ColumnType.String,
+                    Value = "156"
                 },
                 new Column
                 {
                     Name = "Description",
-                    Type = ColumnType.String
+                    Type = ColumnType.String,
+                    Value = "Blazor Diagrams Core"
                 }
             };
 

@@ -23,8 +23,9 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Column</th>
+                    <th>Param</th>
                     <th>Type</th>
+                    <th>Value</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,10 +43,14 @@
                                 }
                             </select>
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="@column.Value" @oninput="e => OnColumnValueChanged(e, column)" />
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+
         <div class="float-right d-flex justify-content-between px-2">
             <div @onclick="OnAddBtnClicked" style="cursor: pointer;">
                 <i class="bi-plus-circle" style="font-size: 1.5rem; color:#2066F1"></i>
@@ -103,7 +108,6 @@
         };
 
         _selectedTable.Columns.Add(column);
-        _selectedTable.AddPort(column, PortAlignment.Left);
         _selectedTable.Refresh();
     }
 
@@ -111,8 +115,6 @@
     {
         if (_selectedColumn == null || _selectedColumn.Primary)
             return;
-
-        _selectedTable.RemovePort(_selectedTable.GetPort(_selectedColumn));
         _selectedTable.Columns.Remove(_selectedColumn);
         _selectedTable.Refresh();
     }
@@ -126,6 +128,12 @@
     protected static void OnColumnTypeChanged(ChangeEventArgs e, Column column)
     {
         column.Type = Enum.Parse<ColumnType>(e.Value?.ToString() ?? string.Empty);
+        column.Refresh();
+    }
+
+    protected static void OnColumnValueChanged(ChangeEventArgs e, Column column)
+    {
+        column.Value = e.Value?.ToString() ?? string.Empty;
         column.Refresh();
     }
 

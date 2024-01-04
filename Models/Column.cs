@@ -5,7 +5,11 @@
         public event Action Changed;
 
         public string Name { get; set; }
+
+        public string Value { get; set; }
+
         public ColumnType Type { get; set; }
+        
         public bool Primary { get; set; }
 
         public void Refresh() => Changed?.Invoke();
