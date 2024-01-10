@@ -1,19 +1,11 @@
-<div class="w-auto fixed-top">
+@inject AppStateService AppState
+
+<div class="w-auto">
   <nav class="bg-white shadow-sm">
     <div class="container-fluid">
       <div class="d-flex align-items-center justify-content-between" style="height: 4rem;">
-        <div class="d-flex w-100">
-          <!-- Logo -->
-          <a href="/news">
-            <Logo/>
-          </a>
-
-          <!-- Menu -->
-          <div class="w-100">
-            <div class="d-sm-flex align-items-center justify-content-center ml-sm-3">
-              <TabBar />
-            </div>
-          </div>
+        <div class="d-flex w-100" @onclick="ToggleDrawer">
+          <i class="bi-list" style="font-size: 2rem; color: cornflowerblue;"></i>
         </div>
 
         <!-- Search -->
@@ -71,10 +63,16 @@
 
 @code {
   private bool isCollapsed = true;
+  public bool open = true;
+
   public void ToggleDropDown()
   {
     isCollapsed = !isCollapsed;
-    Console.WriteLine("isCollapsed: " + isCollapsed);
   }
 
+  public void ToggleDrawer()
+  {
+      open = !open;
+      AppState.IsDrawerOpen = open;
+  }
 }

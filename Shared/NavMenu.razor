@@ -1,43 +1,39 @@
-﻿<div style="height:100vh">
+﻿<MudPaper Class="mud-height-full" Style="overflow:hidden; position:relative;">
+    <MudDrawerContainer Class="mud-height-full d-flex flex-row pr-2">
+        <MudDrawer @bind-Open="@open" Elevation="0" Variant="@DrawerVariant.Persistent">
+            <MudNavMenu  Class="pa-2" Rounded="true" Color="Color.Primary" style="height: 100vh;">
+                <MudText Typo="Typo.h6" Class="px-4">
+                    <Logo/>
+                </MudText>
+                <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Microgrid System</MudText>
+                <MudDivider Class="my-2"/>
+                <MudNavLink Href="/guide" Icon="@Icons.Material.Filled.TipsAndUpdates">Guide</MudNavLink>
+                <MudNavLink Href="/workspace" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
+                <MudNavLink Href="/project">Project</MudNavLink>
+                <MudNavGroup Title="Settings" Expanded="true">
+                    <MudNavLink Href="/users">Users</MudNavLink>
+                    <MudNavLink Href="/security">Security</MudNavLink>
+                </MudNavGroup>
+                <MudNavLink Href="/about">About</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
 
-    <div class="top-row ps-3 navbar navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">BlazorApp</a>
-            @* <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button> *@
+        <div class="d-flex justify-center align-center">
+            @if(open) {
+                <MudIconButton Icon="@Icons.Material.Filled.ChevronLeft" OnClick="@ToggleDrawer" style="width: 4px; height: 4px; margin: 0px;"></MudIconButton>
+            } else {
+                <MudIconButton Icon="@Icons.Material.Filled.ChevronRight" OnClick="@ToggleDrawer" style="width: 4px; height: 4px; margin: 0px;"></MudIconButton>
+            }
         </div>
-    </div>
+    </MudDrawerContainer>
+</MudPaper>
 
-    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-        <nav class="flex-column">
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="/home" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> News
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="/project" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Project
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="/home" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                </NavLink>
-            </div>
-        </nav>
-    </div>
-</div>
+@code
+{
+    bool open = false;
 
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    void ToggleDrawer()
     {
-        collapseNavMenu = !collapseNavMenu;
+        open = !open;
     }
 }

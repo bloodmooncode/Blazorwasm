@@ -26,12 +26,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWJvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Diagram.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGlhZ3JhbS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Guide.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR3VpZGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Index.razor]
