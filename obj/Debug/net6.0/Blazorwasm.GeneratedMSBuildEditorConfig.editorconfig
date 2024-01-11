@@ -26,8 +26,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWJvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/DashBoard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFzaEJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Guide.razor]
@@ -46,8 +46,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvamVjdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/BarChart.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0JhckNoYXJ0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/DonutChart.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RvbnV0Q2hhcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/Footer.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0Zvb3Rlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/LineChart.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0xpbmVDaGFydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/Logo.razor]
@@ -56,6 +68,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/Tab.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RhYi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/TableColumn.razor]
@@ -77,10 +93,6 @@ build_metadata.AdditionalFiles.CssScope = b-yjll2uz27b
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/LoginPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW5QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-l3wd5tknof
-
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/MainBoard.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFpbkJvYXJkLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-85nzihm29u
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/MainPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFpblBhZ2UucmF6b3I=

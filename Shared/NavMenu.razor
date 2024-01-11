@@ -8,13 +8,14 @@
                 <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Microgrid System</MudText>
                 <MudDivider Class="my-2"/>
                 <MudNavLink Href="/guide" Icon="@Icons.Material.Filled.TipsAndUpdates">Guide</MudNavLink>
+                <MudNavLink Href="/project" Icon="@Icons.Material.Filled.AutoAwesomeMotion">Project</MudNavLink>
+                <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.AutoGraph">Dashboard</MudNavLink>
                 <MudNavLink Href="/workspace" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
-                <MudNavLink Href="/project">Project</MudNavLink>
-                <MudNavGroup Title="Settings" Expanded="true">
+                <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
                     <MudNavLink Href="/users">Users</MudNavLink>
                     <MudNavLink Href="/security">Security</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="/about">About</MudNavLink>
+                <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Camera">About</MudNavLink>
             </MudNavMenu>
         </MudDrawer>
 
@@ -30,7 +31,7 @@
 
 @code
 {
-    bool open = false;
+    bool open = true;
 
     void ToggleDrawer()
     {

@@ -16,5 +16,4 @@
     <PackageReference Include="Z.Blazor.Diagrams" Version="3.0.1" />
   </ItemGroup>
 
-
 </Project>

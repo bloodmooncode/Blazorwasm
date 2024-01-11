@@ -830,7 +830,6 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/staticwebassets.development.json
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Home.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/LoginPage.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/MainBoard.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/MainPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/SignPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Workspace.razor.rz.scp.css
