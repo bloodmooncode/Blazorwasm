@@ -1,4 +1,4 @@
-@page "/Project"
+@page "/Microgrids"
 @using Blazorwasm.Shared
 @using Blazorwasm.Models
 @using System.Net.Http.Json
@@ -6,7 +6,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager NavigationManager
 
-<div class="full-height">
+<div class="full-height" style="padding-top: 50px">
     <h2 class="px-5">Microgrid List</h2>
     <MudDataGrid class="px-5 border-none" @ref="dataGrid" MultiSelection="true" Items="@Elements" Filterable="false"
     Hideable="true" Groupable="true" GroupExpanded="false" GroupClassFunc="GroupClassFunc">

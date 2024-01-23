@@ -1,6 +1,6 @@
 @page "/about"
 
-<div style="height: 100vh;">
+<div class="full-height mt-5">
   <div class="text-center">
     <h1 class="display-4 fw-bold">About</h1>
     <div class="col-lg-9 mx-auto pt-3">
@@ -18,3 +18,15 @@
     <Footer />
   </div>
 </div>
+
+<style>
+    html, body, #app {
+        height: 100%;
+        margin: 0;
+    }
+
+    .full-height {
+        height: 100%;
+        overflow-y: auto;
+    }
+</style>
