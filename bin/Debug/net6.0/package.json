@@ -1,0 +1,18 @@
+{
+  "name": "blazorwasm",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">   <img src=\"./assets/logo.png\" width=\"100\" height=\"100\" alt=\"LOGO\">   <h1>MicrogirdSync</h1> </div>",
+  "main": "postcss.config.js",
+  "scripts": {
+    "buildcss": "postcss wwwroot/css/tailwind/tailwind.css -o wwwroot/css/tailwind/tailwind.min.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.3.6"
+  }
+}
