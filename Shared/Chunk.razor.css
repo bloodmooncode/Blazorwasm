@@ -149,7 +149,7 @@
 
 .element-buttons {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.33s ease-out 0s;
 }
 
 .element-content:hover .element-buttons {

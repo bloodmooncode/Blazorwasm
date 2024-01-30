@@ -1,7 +1,7 @@
 @using Blazorwasm.Models
 
-<div class="mt-5">
-    <div class="main-timeline">
+<div class="">
+    <div class="main-timeline mt-5">
         @foreach (var (element, index) in Elements.Select((element, index) => (element, index)))
         {
             <div class="timeline">
@@ -13,24 +13,33 @@
                         </span>
                         <img src="images/@(element.type).png" class="image"/>
                         <div class="element-buttons">
-                            <MudIconButton class="mr-3" @onclick="() => AddGrid(index)" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
-                            <MudIconButton @onclick="() => DeleteGrid(index)" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                            <MudIconButton class="mr-3" OnClick="@(() => OpenDrawer(Anchor.End, index))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                            <MudIconButton class="mr-3" OnClick="@(() => AddGrid(index))" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                            <MudIconButton OnClick="@(() => DeleteGrid(index))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                         </div>
                     </div>
                 </div>
             </div>
         }
     </div>
+
+    <MudDrawer @bind-Open="@open" Width="@width" Height="@height" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <div class="mx-5">
+            <ElementColumn DrawerIndex="@drawIndex" Elements="@Elements"></ElementColumn>
+        </div>
+        
+    </MudDrawer>
+    
 </div>
 
 @code {
     List<Element> Elements = new List<Element>
     {
-        new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
-        new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }},
-        new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
-        new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
-        new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }}
+        new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+        new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+        new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+        new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+        new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
     };  
     public void AddGrid(int index)
     {
@@ -46,7 +55,26 @@
             Console.WriteLine("Invalid index for AddGrid");
         }
     }
+    
+    bool open;
+    Anchor anchor;
+    int drawIndex;
+    string width, height;
 
+    int OpenDrawer(Anchor anchor, int index)
+    {
+        open = true;
+        this.anchor = anchor;
+        switch (anchor)
+        {
+            case Anchor.End:
+                width = "400px";
+                height = "100%";
+                break;
+        }
+        drawIndex = index;
+        return index;
+    }
 
     public void DeleteGrid(int index) {
         // 检查索引是否在合法范围内
