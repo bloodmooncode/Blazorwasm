@@ -15,6 +15,8 @@ namespace Blazorwasm.Models
         public double maximumSellingPower { get; set; } = 0.0;
         public double minimumSellingPower { get; set; } = 0.0;
 
+        public List<double> SellingPower {get; set; } = new List<double>();
+
     }
 }
 

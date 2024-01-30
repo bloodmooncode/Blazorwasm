@@ -1,0 +1,27 @@
+
+<MudButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.End))">End</MudButton>
+
+<MudDrawer @bind-Open="@open" Width="@width" Height="@height" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">Title</MudText>
+    </MudDrawerHeader>
+    
+</MudDrawer>
+@code{ 
+    bool open;
+    Anchor anchor;
+    string width, height;
+
+    void OpenDrawer(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
+        switch (anchor)
+        {
+            case Anchor.End:
+                width = "400px";
+                height = "100%";
+                break;
+        }
+    }
+}

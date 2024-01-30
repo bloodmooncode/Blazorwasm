@@ -832,7 +832,6 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/LoginPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/MainPage.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/SignPage.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Workspace.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/MainLayout.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/NavMenu.razor.rz.scp.css
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/SideBar.razor.rz.scp.css
@@ -845,3 +844,5 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/refint/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/Blazorwasm.pdb
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/ref/Blazorwasm.dll
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Whiteboard.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/Chunk.razor.rz.scp.css

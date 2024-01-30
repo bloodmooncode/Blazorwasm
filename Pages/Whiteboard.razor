@@ -1,0 +1,120 @@
+@page "/whiteboard"
+
+@using Blazor.Diagrams
+@using Blazor.Diagrams.Core.Anchors;
+@using Blazor.Diagrams.Core.Geometry;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.PathGenerators;
+@using Blazor.Diagrams.Core.Routers;
+@using Blazor.Diagrams.Options;
+@using Blazor.Diagrams.Components;
+@using Blazorwasm.Models;
+@using Blazorwasm.Shared;
+@using Blazor.Diagrams.Core.Models.Base;
+
+
+<div class="mt-5 ml-5" style="height: 100%;">
+    <div class="d-flex align-items-centers py-2 mb-2 mr-5 rounded-2 custom-shadow">
+        <div class="clickable ml-5" @onclick="AddNode" style="cursor: pointer;">
+            <i class="bi bi-plus-lg" style="font-weight: bold;"></i>
+        </div>
+
+        <div class="vertical-line mx-4"></div>
+        
+        <div class="clickable" @onclick="DeleteNode" style="cursor: pointer;">
+            <i class="bi bi-dash-lg"></i>
+        </div>
+    </div>
+    
+
+    <div class="wrapper">
+        <CascadingValue Value="Diagram">
+            <div class="diagram-container">
+                <DiagramCanvas></DiagramCanvas>
+            </div>
+            <SideBar></SideBar>
+        </CascadingValue>
+    </div>
+</div>
+
+<style>
+    .custom-shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .vertical-line {
+        border-right: 1px solid #ccc; /* 设置分隔线的颜色和样式 */
+        height: 20px; /* 设置分隔线的高度 */
+        margin: 0 10px; /* 调整分隔线两侧的间距 */
+    }
+
+</style>
+
+@code {
+    private BlazorDiagram Diagram { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        var options = new BlazorDiagramOptions
+        {
+            AllowMultiSelection = true,
+            Zoom =
+            {
+                Enabled = false,
+            },
+            Links =
+            {
+                DefaultRouter = new NormalRouter(),
+                DefaultPathGenerator = new SmoothPathGenerator()
+            },
+        };
+
+        Diagram = new BlazorDiagram(options);
+
+        var firstNode = new Table();
+        firstNode.Name = "First Node";
+        var secondNode = new Table();
+        secondNode.Name = "Second Node";
+        Diagram.Nodes.Add(new[] { firstNode, secondNode });
+
+        var leftPort = secondNode.AddPort(PortAlignment.Left);
+        var rightPort = secondNode.AddPort(PortAlignment.Right);
+
+        // The connection point will be the intersection of
+        // a line going from the target to the center of the source
+        var sourceAnchor = new ShapeIntersectionAnchor(firstNode);
+        // The connection point will be the port's position
+        var targetAnchor = new SinglePortAnchor(leftPort);
+
+        var link = Diagram.Links.Add(new LinkModel(sourceAnchor, targetAnchor));
+    }
+
+    private void AddNode()
+    {
+        var newnode = Diagram.Nodes.Add(new Table());
+        var LeftPort = newnode.AddPort(PortAlignment.Left);
+        var RightPort = newnode.AddPort(PortAlignment.Right);
+        var TopPort = newnode.AddPort(PortAlignment.Top);
+        var BottomPort = newnode.AddPort(PortAlignment.Bottom);
+    }
+
+    private void DeleteNode()
+    {
+        // Get the selected models from the diagram
+        var selectedModels = Diagram.GetSelectedModels().ToList();
+
+        // Check if there are any selected models
+        if (selectedModels.Any())
+        {
+            // Remove the selected models from the diagram
+            foreach (var selectedModel in selectedModels)
+            {
+                if (selectedModel is NodeModel nodeModel)
+                {
+                    Diagram.Nodes.Remove(nodeModel);
+                }
+            }
+            // Clear the selection after deletion
+            Diagram.UnselectAll();
+        }
+    }
+}

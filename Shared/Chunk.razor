@@ -1,0 +1,63 @@
+@using Blazorwasm.Models
+
+<div class="mt-5">
+    <div class="main-timeline">
+        @foreach (var (element, index) in Elements.Select((element, index) => (element, index)))
+        {
+            <div class="timeline">
+                <div class="icon"></div>
+                <div class="element-content">
+                    <div class="element-outer">
+                        <span class="element">
+                            <span class="type">@element.type</span>
+                        </span>
+                        <img src="images/@(element.type).png" class="image"/>
+                        <div class="element-buttons">
+                            <MudIconButton class="mr-3" @onclick="() => AddGrid(index)" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                            <MudIconButton @onclick="() => DeleteGrid(index)" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    List<Element> Elements = new List<Element>
+    {
+        new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
+        new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }},
+        new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
+        new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }},
+        new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }}
+    };  
+    public void AddGrid(int index)
+    {
+        // 检查索引是否在合法范围内
+        if (index >= 0 && index < Elements.Count)
+        {
+            // 复制指定索引处的元素，并插入到列表中
+            Elements.Insert(index, Elements[index]);
+        }
+        else
+        {
+            // 处理索引越界的情况，这里可以抛出异常或者执行其他逻辑
+            Console.WriteLine("Invalid index for AddGrid");
+        }
+    }
+
+
+    public void DeleteGrid(int index) {
+        // 检查索引是否在合法范围内
+        if (index >= 0 && index < Elements.Count)
+        {
+            Elements.RemoveAt(index);
+        }
+        else
+        {
+            // 处理索引越界的情况，这里可以抛出异常或者执行其他逻辑
+            Console.WriteLine("Invalid index for DeleteGrid");
+        }
+    }
+}
