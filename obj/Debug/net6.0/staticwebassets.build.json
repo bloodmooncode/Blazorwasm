@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MM84zdc4HW4+Gev67PbobO1mhGidX51b/8tGj0P45nQ=",
+  "Hash": "5TrJwKv98otzuJ7/BWotUkkZUEasUvm2jEEwFNElwRQ=",
   "Source": "Blazorwasm",
   "BasePath": "/",
   "Mode": "Root",
@@ -7548,6 +7548,23 @@
       "OriginalItemSpec": "wwwroot/images/CDG.png"
     },
     {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/CDG.svg",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/CDG.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/CDG.svg"
+    },
+    {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/ESS.png",
       "SourceId": "Blazorwasm",
       "SourceType": "Discovered",
@@ -7565,6 +7582,23 @@
       "OriginalItemSpec": "wwwroot/images/ESS.png"
     },
     {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/ESS.svg",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/ESS.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/ESS.svg"
+    },
+    {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/LOAD.png",
       "SourceId": "Blazorwasm",
       "SourceType": "Discovered",
@@ -7580,6 +7614,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/LOAD.png"
+    },
+    {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/LOAD.svg",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/LOAD.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/LOAD.svg"
     },
     {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/logo.png",
@@ -7699,6 +7750,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/RDG.png"
+    },
+    {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/RDG.svg",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/RDG.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/RDG.svg"
     },
     {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/index.html",

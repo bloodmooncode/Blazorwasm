@@ -2,14 +2,19 @@ namespace Blazorwasm.Models
 {
     public class Microgrid
     {
-        public event Action Changed;
+        public int id { get; set; } = 0;
+        public int userId { get; set; } = 0;
+        public string name { get; set; } = "";
+        public string timeHorizon { get; set; } = "";
 
-        public string Type { get; set; }
+        public double maximumBuyingPower { get; set; } = 0.0;
 
-        public string Value { get; set; }
+        public double minimumBuyingPower { get; set; } = 0.0;
 
-        public string time {get; set;}
+        public double maximumSellingPower { get; set; } = 0.0;
 
-        public void Refresh() => Changed?.Invoke();
+        public double minimumSellingPower { get; set; } = 0.0;
+        
+        public List<Element> Elements { get; set; } = new List<Element>();
     }  
 }
