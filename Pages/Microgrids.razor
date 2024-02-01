@@ -6,9 +6,9 @@
 @inject HttpClient httpClient
 @inject NavigationManager NavigationManager
 
-<div class="full-height" style="padding-top: 50px">
+<div class="full-height" style="padding-top: 50px;">
     <h2 class="px-5">Microgrids List</h2>
-    <MudDataGrid class="px-5 border-none" @ref="dataGrid" MultiSelection="true" Items="@Grids" Filterable="false"
+    <MudDataGrid class="px-5 border-none mt-6" @ref="dataGrid" MultiSelection="true" Items="@Grids" Filterable="false"
     Hideable="true" Groupable="true" GroupExpanded="true" GroupClassFunc="GroupClassFunc">
         <ToolBarContent>
             <div class="d-flex flex-nowrap mt-4">
@@ -44,7 +44,7 @@
 
             <TemplateColumn CellClass="d-flex justify-end">
                 <CellTemplate>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@Microdetail" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@(e => Microdetail(context.Item.id))" />
                 </CellTemplate>
             </TemplateColumn>
 
@@ -201,7 +201,7 @@
     };
        
         
-    MudDataGrid<Microgrid> dataGrid;
+    MudDataGrid<Microgrid> dataGrid = new MudDataGrid<Microgrid>();
     bool _customizeGroupTemplate = true;
     static bool _customizeGroupBy;
 
@@ -246,8 +246,8 @@
         }
     }
 
-    void Microdetail()
+    void Microdetail(int microgridId)
     {
-        NavigationManager.NavigateTo("/workspace");
+        NavigationManager.NavigateTo($"/workspace/{microgridId}");
     }
 }

@@ -1,3 +1,12 @@
+@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+
 <div>
     <MudChart ChartType="ChartType.Bar" ChartSeries="@Series" @bind-SelectedIndex="Index" XAxisLabels="@XAxisLabels" Width="100%" Height="350px"></MudChart>
 </div>

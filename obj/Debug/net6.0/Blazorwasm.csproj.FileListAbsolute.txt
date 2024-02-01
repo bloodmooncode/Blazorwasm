@@ -845,4 +845,4 @@
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/Blazorwasm.pdb
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/ref/Blazorwasm.dll
 /Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Whiteboard.razor.rz.scp.css
-/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Shared/Chunk.razor.rz.scp.css
+/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/obj/Debug/net6.0/scopedcss/Pages/Workspace.razor.rz.scp.css

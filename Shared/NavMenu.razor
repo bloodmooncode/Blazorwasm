@@ -1,4 +1,14 @@
-﻿<MudPaper Class="mud-height-full" Style="overflow:hidden; position:relative;">
+﻿@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+
+
+<MudPaper Class="mud-height-full" Style="overflow:hidden; position:relative;">
     <MudDrawerContainer Class="mud-height-full d-flex flex-row pr-2">
         <MudDrawer @bind-Open="@open" Elevation="0" Variant="@DrawerVariant.Persistent">
             <MudNavMenu  Class="pa-2" Rounded="true" Color="Color.Primary" style="height: 100vh;">
@@ -9,7 +19,7 @@
                 <MudDivider Class="my-2"/>
                 <MudNavLink Href="/guide" Icon="@Icons.Material.Filled.TipsAndUpdates">Guide</MudNavLink>
                 <MudNavLink Href="/microgrids" Icon="@Icons.Material.Filled.AutoAwesomeMotion">Microgrids</MudNavLink>
-                <MudNavLink Href="/workspace" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
+                <MudNavLink Href="/workspace/1" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
                 <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Leaderboard">Dashboard</MudNavLink>
                 <MudNavLink Href="/whiteboard" Icon="@Icons.Material.Filled.DashboardCustomize">Whiteboard</MudNavLink>
                 <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
