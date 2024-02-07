@@ -46,16 +46,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTmV3cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Pages/Test.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVGVzdC5yYXpvcg==
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/AddGrid_Dialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0FkZEdyaWRfRGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/BarChart.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0JhckNoYXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/Dialog.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RpYWxvZy5yYXpvcg==
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/DeleteGrid_Dialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RlbGV0ZUdyaWRfRGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/DonutChart.razor]

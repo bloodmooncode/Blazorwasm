@@ -1,0 +1,24 @@
+<MudDialog>
+    <DialogContent>
+        <MudText>@ContentText</MudText>
+        <MudText>Microgrid ID: @microgridId</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel" class="my-3">Cancel</MudButton>
+        <MudButton Color="Color.Error" OnClick="Submit" class="mr-3 my-3">@ButtonText</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = new MudDialogInstance();
+
+    [Parameter] public string microgridId { get; set; } = "";
+    public string ButtonText = "Delete";
+    public string ContentText = "Do you really want to delete this microgrid? This process cannot be undone.";
+
+    void Submit() {
+      Console.WriteLine("Grid id : " + @microgridId + " has been deleted");
+      MudDialog.Close(DialogResult.Ok(true));
+    }
+    void Cancel() => MudDialog.Cancel();
+}
