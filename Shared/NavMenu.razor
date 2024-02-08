@@ -16,17 +16,23 @@
                     <Logo/>
                 </MudText>
                 <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Microgrid System</MudText>
-                <MudDivider Class="my-2"/>
-                <MudNavLink Href="/guide" Icon="@Icons.Material.Filled.TipsAndUpdates">Guide</MudNavLink>
-                <MudNavLink Href="/microgrids" Icon="@Icons.Material.Filled.AutoAwesomeMotion">Microgrids</MudNavLink>
-                <MudNavLink Href="/workspace/1" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
-                <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Leaderboard">Dashboard</MudNavLink>
-                <MudNavLink Href="/whiteboard" Icon="@Icons.Material.Filled.DashboardCustomize">Whiteboard</MudNavLink>
-                <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
-                    <MudNavLink Href="/users">Users</MudNavLink>
-                    <MudNavLink Href="/security">Security</MudNavLink>
-                </MudNavGroup>
-                <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Camera">About</MudNavLink>
+                <div class="pl-2">
+                    <MudDivider Class="my-2"/>
+                    <MudText Class="pl-2 fs-6 text-black-50">menu</MudText>
+                    
+                    <MudNavLink Href="/guide" Icon="@Icons.Material.Filled.TipsAndUpdates">Guide</MudNavLink>
+                    <MudNavLink Href="/microgrids" Icon="@Icons.Material.Filled.AutoAwesomeMotion">Microgrids</MudNavLink>
+                    <MudNavLink Href="/workspace/1" Icon="@Icons.Material.Filled.Dashboard">Workspace</MudNavLink>
+                    <MudNavLink Href="/dashboard" Icon="@Icons.Material.Filled.Leaderboard">Dashboard</MudNavLink>
+                    <MudNavLink Href="/whiteboard" Icon="@Icons.Material.Filled.DashboardCustomize">Whiteboard</MudNavLink>
+                    <MudDivider Class="my-2"/>
+                    <MudText Class="pl-2 fs-6 text-black-50">other</MudText>
+                    <MudNavGroup Title="Settings" Icon="@Icons.Material.Filled.Settings" Expanded="true">
+                        <MudNavLink Href="/profile">Users</MudNavLink>
+                        <MudNavLink Href="/security">Security</MudNavLink>
+                    </MudNavGroup>
+                    <MudNavLink Href="/about" Icon="@Icons.Material.Filled.Camera">About</MudNavLink>
+                </div>
             </MudNavMenu>
         </MudDrawer>
 

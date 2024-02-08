@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5TrJwKv98otzuJ7/BWotUkkZUEasUvm2jEEwFNElwRQ=",
+  "Hash": "mu5zwpelPN7Zk2JeP2srwHqfV+e0uInA0x8SXHCe8Zk=",
   "Source": "Blazorwasm",
   "BasePath": "/",
   "Mode": "Root",
@@ -7733,6 +7733,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/onboard-3.png"
+    },
+    {
+      "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/profile.jpg",
+      "SourceId": "Blazorwasm",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "images/profile.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/profile.jpg"
     },
     {
       "Identity": "/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/wwwroot/images/RDG.png",
