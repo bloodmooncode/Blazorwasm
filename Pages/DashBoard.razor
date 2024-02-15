@@ -1,0 +1,22 @@
+@page "/dashboard/"
+
+<div class="full-height px-10 mt-5">
+  <MudGrid>
+    <LineChart />
+    <DonutChart />
+    <BarChart />
+  </MudGrid>  
+</div>
+
+
+<style>
+    html, body, #app {
+        height: 100%;
+        margin: 0;
+    }
+
+    .full-height {
+        height: 100%;
+        overflow-y: auto;
+    }
+</style>

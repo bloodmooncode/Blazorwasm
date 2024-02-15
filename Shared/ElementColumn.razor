@@ -1,0 +1,78 @@
+@inject NavigationManager NavigationManager
+@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+
+
+<h3 class="mt-5">Properties Panel</h3>
+
+<div class="d-flex fs-6 fw-semibold">
+    <div class="my-5 mr-6">Element Name : @Elements[DrawerIndex].name</div>
+    <div class="my-5">Type : @Elements[DrawerIndex].type</div>
+</div>
+
+
+<table>
+    <tr>
+        <td>
+            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @Elements[DrawerIndex].minimumBuyingPower</div></MudChip>
+        </td>
+        <td>
+            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @Elements[DrawerIndex].maximumBuyingPower</div></MudChip>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @Elements[DrawerIndex].minimumSellingPower</div></MudChip>
+        </td>
+        <td>
+            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @Elements[DrawerIndex].maximumSellingPower</div></MudChip>
+        </td>
+    </tr>
+</table>
+
+
+<table class="table table-striped mt-5">
+    <thead>
+        <tr>
+            @foreach (var h in headings)
+            {
+                <th>@h</th>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var (price, index) in @Elements[DrawerIndex].SellingPower.Select((price, index) => (price, index)))
+        {
+            <tr class="align-middle">
+            <td>
+                <div>@index</div>
+            </td>
+            <td>
+                <div>@price</div>
+            </td>
+            </tr>
+        }  
+    </tbody>
+</table>
+
+<div class="text-center mt-5" style="color: #3b0fdb; cursor: pointer;" @onclick="jumptoDash">Go to the Visual Panel</div>
+
+@code {
+    [Parameter]
+    public int DrawerIndex { get; set; }
+    [Parameter]
+    public List<Element> Elements { get; set; } = new List<Element>();
+
+    string[] headings = {"Time", "Value"};
+    
+    protected void jumptoDash() {
+        NavigationManager.NavigateTo("/dashboard");
+    }
+}

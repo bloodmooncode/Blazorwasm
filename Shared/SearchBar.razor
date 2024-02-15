@@ -1,0 +1,52 @@
+@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+@inject ISnackbar Snackbar
+
+<div class="">
+
+  <div class="d-flex align-items-center justify-content-between my-5">
+
+    <div class="col-9">
+      <div class="input-group">
+        <input type="text" class="form-control custom-input" placeholder="Search...">
+        <span class="input-group-text" id="basic-addon1">
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="d-flex align-items-center justify-content-center p-2 border rounded-circle cursor-pointer" @onclick="@(() => Snackbar.Add(@notice))" style="height: 40px; width: 40px;">
+          <i class="bi bi-bell"></i>
+      </div>
+
+      <div class="d-flex align-items-center ml-5">
+        <MudAvatar Color="Color.Primary" Variant="Variant.Outlined">
+          <MudAvatar Color="Color.Primary">Z</MudAvatar>
+        </MudAvatar>
+        <div class="text-center ml-3">
+          ZYP
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<style>
+    .custom-input:focus {
+        border-width: 1px; /* 设置为需要的边框宽度 */
+        border-color: #ced4da; /* 设置为需要的边框颜色 */
+        box-shadow: none; /* 去除阴影效果 */
+    }
+</style>
+
+@code {
+   protected string notice = "Notice";
+}

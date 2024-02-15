@@ -1,14 +1,48 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazorwasm.Shared
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
 
-<div class="page">
-    @* <div class="sidebar">
-    </div> *@
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
 
-    <main>
-        @* <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div> *@
-
+@if (CurrentRoute.EndsWith("/login"))
+{
+    <div class="d-flex flex-column h-100">
         @Body
-    </main>
-</div>
+    </div>
+}
+else if (CurrentRoute.EndsWith("/signup"))
+{
+    <div class="d-flex flex-column h-100">
+        @Body
+    </div>
+}
+else if (CurrentRoute.EndsWith("/home"))
+{
+    <div class="d-flex flex-column h-100">
+        @Body
+    </div>
+}
+else {
+    <div class="d-flex flex-row h-100" style="width: 100vw;">
+        <div class="flex-shrink-0">
+            <NavMenu />
+        </div>
+
+        <div class="d-flex flex-column flex-grow-1 overflow-auto" style="height: 100vh;">
+            @Body
+        </div>
+    </div>
+}
+
+@code {
+    private bool expanded = true;
+
+    private void ToggleExpand()
+    {
+        expanded = !expanded;
+    }
+
+    private string CurrentRoute => Navigation.Uri;
+}

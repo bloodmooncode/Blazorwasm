@@ -1,0 +1,76 @@
+@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+
+<MudDialog style="width: 100%;">
+    <DialogContent>
+        <table style="width: 100%;">
+            <tr class="d-flex justify-content-between mb-5">
+                <td class="pr-3">
+                    <MudTextField @bind-Value="@element.name" Label="Element_Name" Variant="Variant.Outlined"></MudTextField>
+                </td>
+                <td class="pr-3">
+                    <MudTextField @bind-Value="@element.type" Label="Element_Type" Variant="Variant.Outlined"></MudTextField>
+                </td>
+            </tr>
+
+            @if (element.type == "CDG") // 添加条件判断
+            {
+                <tr class="d-flex justify-content-between mb-3">
+                    <td class="flex-grow-1 pr-4">
+                        <MudTextField @bind-Value="@element.maximumBuyingPower" Label="Maximum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                    <td class="flex-grow-1">
+                        <MudTextField @bind-Value="@element.minimumBuyingPower" Label="Minimum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                </tr>
+                <tr class="d-flex justify-content-between">
+                    <td class="flex-grow-1 pr-4">
+                        <MudTextField @bind-Value="@element.maximumSellingPower" Label="Maximum_Selling_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                    <td class="flex-grow-1">
+                        <MudTextField @bind-Value="@element.minimumSellingPower" Label="Minimum Selling power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                </tr>
+            }
+            @if (element.type == "RDG") {
+                
+            }
+            @if (element.type == "ESS") {
+
+            }
+            @if (element.type == "LOAD") {
+                <tr class="d-flex justify-content-between mb-3">
+                    <td class="flex-grow-1 pr-4">
+                        <MudTextField @bind-Value="@element.maximumBuyingPower" Label="Maximum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                    <td class="flex-grow-1">
+                        <MudTextField @bind-Value="@element.minimumBuyingPower" Label="Minimum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    </td>
+                </tr>
+            }
+        </table>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel" class="my-3">Cancel</MudButton>
+        <MudButton OnClick="Submit" class="mr-3 my-3" Color="Color.Success">Add</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    public Element element = new Element();
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; } = new MudDialogInstance();
+
+    void Submit(){
+        Console.WriteLine("A new grid name" + @element.name + " added");
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+     
+    void Cancel() => MudDialog.Cancel();
+}

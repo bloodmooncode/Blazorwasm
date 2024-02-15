@@ -1,0 +1,57 @@
+@using Blazorwasm.Models;
+
+<li class="list-group-item">
+    @if (!Column.Primary && Table.GetPort(Column) != null)
+    {
+        <PortRenderer Port="Table.GetPort(Column)"></PortRenderer>
+    }
+    @if (Column.Primary)
+    {
+        <i class="fas fa-key mr-2 text-warning"></i>
+    }
+    else if (HasLinks)
+    {
+        <i class="fas fa-key mr-2 text-secondary"></i>
+    }
+    <span class="text-primary @(Column.Primary || HasLinks ? "" : "ml-4")">@Column.Type.ToString()</span>
+    @Column.Name
+</li>
+
+@code {
+  private bool _shouldRender = true;
+
+        [Parameter]
+        public Table Table { get; set; } = null!;
+
+        [Parameter]
+        public Column Column { get; set; } = null!;
+
+        public bool HasLinks => Table.GetPort(Column)?.Links.Count > 0;
+
+        public void Dispose()
+        {
+            Column.Changed -= ReRender;
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            Column.Changed += ReRender;
+        }
+
+        protected override bool ShouldRender() => _shouldRender;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            _shouldRender = false;
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        private void ReRender()
+        {
+            _shouldRender = true;
+            StateHasChanged();
+        }
+
+}

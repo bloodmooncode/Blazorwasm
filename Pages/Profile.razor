@@ -1,0 +1,72 @@
+@page "/profile"
+
+<div style="width: 100%; margin-top: 10%;" class="d-flex justify-content-center">
+  <MudAvatar style="height:90px; width:90px;" Image="/images/profile.jpg" />
+</div>
+
+<div style="width: 100%;" class="d-flex justify-content-center mt-5">
+  <MudText>User Name</MudText>
+</div>
+
+<div class="px-6" style="margin-top: 10%;">
+  <MudList Clickable="false" class="text-black-50">
+    <div class="d-flex">
+      <MudListItem Text="Email" class="py-4"/>
+      <input @bind="email" class="custom-input mr-8" readonly/>
+      <div style="display: flex; align-items: center;">
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronRight" OnClick="modifyEmail" style="width: 4px; height: 4px; margin: 0px;"></MudIconButton>
+      </div>
+      
+    </div>
+    
+    <MudDivider />
+    <div class="d-flex">
+      <MudListItem Text="Password" class="py-4"/>
+      <input type="password" @bind="password" class="custom-input mr-8" readonly/>
+      <div style="display: flex; align-items: center;">
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronRight" OnClick="modifyPassword" style="width: 4px; height: 4px; margin: 0px;"></MudIconButton>
+      </div>
+    </div>
+    
+    <MudDivider />
+    <div class="d-flex">
+      <MudListItem Text="Phone Number" class="py-4"/>
+      <input @bind="phone" class="custom-input mr-8" readonly/>
+      <div style="display: flex; align-items: center;">
+        <MudIconButton Icon="@Icons.Material.Filled.ChevronRight" OnClick="modifyPhone" style="width: 4px; height: 4px; margin: 0px;"></MudIconButton>
+      </div>
+    </div>
+    
+    <MudDivider />
+  </MudList>
+</div>
+
+<div style="width: 100%; margin-top: 10%;" class="d-flex justify-content-center">
+  <MudButton Variant="Variant.Outlined" Color="Color.Primary" style="width: 130px; height:40px;">Sign Out</MudButton>
+</div>
+
+<style>
+    /* 清除默认样式 */
+    .custom-input {
+        border: none;
+        background-color: transparent;
+        outline: none;
+    }
+</style>
+
+@code {
+    private string password { get; set; } = "1234567";
+    private string email { get; set; } = "1234567@gmail.com";
+    private string phone { get; set; } = "87654321";
+
+    void modifyEmail() {
+      
+    }
+    void modifyPassword() {
+
+    }
+    void modifyPhone() {
+
+    }
+}
+

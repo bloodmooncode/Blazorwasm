@@ -1,0 +1,41 @@
+@page "/about"
+
+<div class="full-height pt-5 d-flex">
+  <div class="text-center">
+    <div class="flex-shrink-0">
+      <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+      <div class="col-lg-7 mx-auto">
+        <div class="d-flex justify-content-center">
+            <p class="lead fs-5">
+                The "Microgrid Management System" refers to a monitoring and optimization tool designed for small-scale energy systems. It encompasses the monitoring, control, and optimization of various energy resources production and consumption processes within the microgrid. This system is capable of dynamically adjusting the supply and demand of energy in real-time to ensure the stable operation and efficient utilization of energy within the microgrid.
+            </p>
+        </div>
+      </div>
+      
+      <div class="overflow-hidden flex-grow-1" style="max-height: 100vh;">
+        <div class="container px-5">
+          <img src="/images/about.png" class="img-fluid border rounded-3 shadow-lg" alt="Example image" width="700" height="500" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ContactForm />
+    </div>
+    
+    
+    <Footer />
+  </div>
+</div>
+
+<style>
+    html, body, #app {
+        height: 100%;
+        margin: 0;
+    }
+
+    .full-height {
+        height: 100%;
+        overflow-y: auto;
+    }
+</style>

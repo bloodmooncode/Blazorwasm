@@ -1,0 +1,141 @@
+@using System;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Blazor.Diagrams;
+@using Blazor.Diagrams.Core.Models;
+@using Blazor.Diagrams.Core.Models.Base;
+@using Blazor.Diagrams.Extensions;
+@using Blazorwasm.Models;
+
+<div class="sidebar">
+    @if (_selectedTable == null)
+    {
+        <div class="d-flex h-100 align-items-center justify-content-center">
+            No table selected
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label for="tableName" class="fw-bold mb-2">Table name</label>
+            <input id="tableName" type="text" class="form-control" value="@_selectedTable.Name" @oninput="OnTableNameChanged" />
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Param</th>
+                    <th>Type</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var column in _selectedTable.Columns)
+                {
+                    <tr class="@(column == _selectedColumn ? "active" : "")" @onclick="e => SelectColumn(column)">
+                        <td>
+                            <input type="text" class="form-control" value="@column.Name" @oninput="e => OnColumnNameChanged(e, column)" />
+                        </td>
+                        <td>
+                            <select class="form-control column-type" @onchange="e => OnColumnTypeChanged(e, column)">
+                                @foreach (var val in Enum.GetValues(typeof(ColumnType)).Cast<ColumnType>())
+                                {
+                                    <option selected="@(column.Type == val)">@val</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="@column.Value" @oninput="e => OnColumnValueChanged(e, column)" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="float-right d-flex justify-content-between px-2">
+            <div @onclick="OnAddBtnClicked" style="cursor: pointer;">
+                <i class="bi-plus-circle" style="font-size: 1.5rem; color:#2066F1"></i>
+            </div>
+            <div @onclick="OnDeleteBtnClicked" style="cursor: pointer;" disabled="@(_selectedColumn == null)">
+                <i class="bi bi-trash3" style="font-size: 1.5rem; color:#C234FF"></i>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    public Table _selectedTable { get; set; } = null!;
+    public Column _selectedColumn { get; set; } = null!;
+
+    [CascadingParameter]
+    public BlazorDiagram Diagram { get; set; } = null!;
+
+    public void Dispose()
+    {
+        Diagram.SelectionChanged -= Diagram_SelectionChanged;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Diagram.SelectionChanged += Diagram_SelectionChanged;
+    }
+
+    protected void Diagram_SelectionChanged(SelectableModel model)
+    {
+        if (model is Table tm)
+        {
+            _selectedTable = model.Selected ? tm : null;
+            _selectedColumn = null;
+            StateHasChanged();
+        }
+    }
+
+    protected void OnTableNameChanged(ChangeEventArgs e)
+    {
+        if (_selectedTable == null)
+            return;
+
+        _selectedTable.Name = e.Value?.ToString() ?? string.Empty;
+        _selectedTable.Refresh();
+    }
+
+    protected void OnAddBtnClicked(MouseEventArgs e)
+    {
+        var column = new Column
+        {
+            Name = "Column",
+            Type = ColumnType.String
+        };
+
+        _selectedTable.Columns.Add(column);
+        _selectedTable.Refresh();
+    }
+
+    protected void OnDeleteBtnClicked(MouseEventArgs e)
+    {
+        if (_selectedColumn == null || _selectedColumn.Primary)
+            return;
+        _selectedTable.Columns.Remove(_selectedColumn);
+        _selectedTable.Refresh();
+    }
+
+    protected static void OnColumnNameChanged(ChangeEventArgs e, Column column)
+    {
+        column.Name = e.Value?.ToString() ?? string.Empty;
+        column.Refresh();
+    }
+
+    protected static void OnColumnTypeChanged(ChangeEventArgs e, Column column)
+    {
+        column.Type = Enum.Parse<ColumnType>(e.Value?.ToString() ?? string.Empty);
+        column.Refresh();
+    }
+
+    protected static void OnColumnValueChanged(ChangeEventArgs e, Column column)
+    {
+        column.Value = e.Value?.ToString() ?? string.Empty;
+        column.Refresh();
+    }
+
+    protected void SelectColumn(Column column) => _selectedColumn = column;
+}
