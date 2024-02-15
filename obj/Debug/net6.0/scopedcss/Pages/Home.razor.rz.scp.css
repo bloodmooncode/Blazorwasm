@@ -1,0 +1,104 @@
+a[b-yjll2uz27b] {
+  text-decoration: none;
+}
+
+.home[b-yjll2uz27b] {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* 使 body 元素填满整个视口高度 */
+  background-image: url("/images/back.png");
+  background-size: cover; /* 等比缩放并填满容器 */
+  background-position: center; /* 使图片居中 */
+  background-repeat: no-repeat; /* 防止图片重复 */
+}
+
+.content[b-yjll2uz27b] {
+  align-items: center;
+}
+
+.words[b-yjll2uz27b] {
+  color: white;
+  position: fixed; /* 固定定位 */
+  top: 50%; /* 以下四行代码是为了居中图片 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center; /* 水平居中 */
+}
+
+h1[b-yjll2uz27b] {
+  font-size: 5rem;
+  font-style: oblique;
+  background: linear-gradient(to bottom right, #6dc5fc, #e4abff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro[b-yjll2uz27b] {
+  max-width: 40rem;
+  font-family: "Inter";
+  font-weight: 300;
+  font-size: 1.5rem;
+  /* letter-spacing: 3px; */
+}
+
+.logo[b-yjll2uz27b] {
+  display: inline-flex;
+  text-decoration: none;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.logo img[b-yjll2uz27b] {
+  width: 5rem;
+  height: 5rem;
+}
+
+.btn[b-yjll2uz27b] {
+  max-width: 35rem;
+  display: flex; /* 使用 Flexbox */
+  justify-content: space-between; /* 两个按钮之间最大化空间 */
+  margin-top: 4rem;
+}
+
+.gradient-text[b-yjll2uz27b] {
+  font-size: 3rem;
+  font-family: "Inter";
+  font-weight: normal;
+  font-style: oblique;
+  background: linear-gradient(to bottom right, #6dc5fc, #e4abff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.signup_btn[b-yjll2uz27b] {
+  background-color: #c1a0d1;
+  border-radius: 0.5rem;
+  width: 9rem;
+  height: 3rem;
+}
+
+.signup_btn:hover[b-yjll2uz27b] {
+  background-color: #c199c6;
+}
+
+.login_btn[b-yjll2uz27b] {
+  border-radius: 0.5rem;
+  border: 1.5px solid white;
+  width: 9rem;
+  height: 3rem;
+}
+
+.login_btn:hover[b-yjll2uz27b] {
+  background-color: #311e4d;
+}
+
+.text[b-yjll2uz27b] {
+  color: white;
+  /* height: 3rem; */
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: 0.5rem auto;
+}

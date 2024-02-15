@@ -1,0 +1,28 @@
+.nav-link[b-z2g3hld6u1] {
+  padding-left: 0rem;
+  padding-right: 0rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.nav-tabs[b-z2g3hld6u1] {
+  border-bottom: none;
+}
+/* 非活动标签的样式 */
+.nav-tabs .nav-link[b-z2g3hld6u1] {
+  color: gray; /* 更改文字颜色 */
+  border: none; /* 隐藏底部边框 */
+  transition: transform 0.3s ease; /* 平滑过渡效果 */
+}
+
+/* 活动标签的样式 */
+.nav-tabs .nav-link.active[b-z2g3hld6u1] {
+  color: black; /* 更改活动标签的文字颜色 */
+  border-bottom: 2px solid #3468e8; /* 更改活动标签的边框样式 */
+}
+
+/* 鼠标悬停时的标签样式 */
+.nav-tabs .nav-link:hover[b-z2g3hld6u1] {
+  color: rgb(43, 43, 43); /* 更改鼠标悬停时的文字颜色 */
+  transform: translateY(-3px); /* 鼠标悬停时向上移动 */
+}

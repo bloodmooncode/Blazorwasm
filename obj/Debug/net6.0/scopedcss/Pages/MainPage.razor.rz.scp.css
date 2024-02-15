@@ -1,0 +1,22 @@
+.main[b-k6fzahfpzn] {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* 使 body 元素填满整个视口高度 */
+  background-image: url("/images/navbar.png");
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.logo[b-k6fzahfpzn] {
+  display: inline-flex;
+  text-decoration: none;
+  margin: 0 auto;
+  margin-left: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo img[b-k6fzahfpzn] {
+  width: 4rem;
+  height: 4rem;
+}

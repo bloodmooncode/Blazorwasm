@@ -1,0 +1,118 @@
+.login[b-l3wd5tknof] {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* 使 body 元素填满整个视口高度 */
+  background-image: url("/images/back.png");
+  background-size: cover; /* 等比缩放并填满容器 */
+  background-position: center; /* 使图片居中 */
+  background-repeat: no-repeat; /* 防止图片重复 */
+}
+
+.logo[b-l3wd5tknof] {
+  display: inline-flex;
+  text-decoration: none;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.logo img[b-l3wd5tknof] {
+  width: 5rem;
+  height: 5rem;
+}
+
+.words[b-l3wd5tknof] {
+  color: white;
+  position: fixed; /* 固定定位 */
+  top: 50%; /* 以下四行代码是为了居中图片 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center; /* 水平居中 */
+  font-size: 2.5rem;
+  width: 29rem;
+  height: 35rem;
+  background-color: rgba(193, 160, 209, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 1.5rem;
+}
+
+.input-text[b-l3wd5tknof] {
+  font-size: 1rem;
+  width: 24rem; /* 矩形的宽度 */
+  height: 3rem; /* 矩形的高度 */
+  color: white;
+  font-weight: 350;
+  padding: 1rem 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid;
+  border-radius: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-text:focus[b-l3wd5tknof] {
+  outline: none;
+}
+
+.create_btn[b-l3wd5tknof] {
+  background-color: #c1a0d1;
+  border-radius: 1.5rem;
+  width: 15rem;
+  height: 3rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create_btn:hover[b-l3wd5tknof] {
+  background-color: #c199c6;
+}
+
+.create_btn a[b-l3wd5tknof] {
+  text-decoration: none;
+}
+
+.create_btn .text[b-l3wd5tknof] {
+  font-size: 1rem;
+  color: white;
+  margin: auto;
+  width: fit-content;
+}
+
+.div-container[b-l3wd5tknof] {
+  display: flex;
+  flex-direction: Column;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin-top: 2rem;
+}
+
+hr[b-l3wd5tknof] {
+  border: none; /* 移除默认的边框 */
+  height: 2px; /* 定义线的高度 */
+  background-color: #ffffff; /* 定义线的颜色 */
+  width: 80%; /* 定义线的宽度，可以根据需要调整 */
+  margin: 5px auto; /* 使线居中并在上下添加间距 */
+}
+
+.jump-to-signup[b-l3wd5tknof] {
+  font-size: 1rem;
+  display: flex;
+  padding-top: 2rem;
+  margin-left: 3rem;
+  margin-right: auto;
+}
+
+.jump-to-signup p[b-l3wd5tknof] {
+  padding-right: 1rem;
+}
+
+.jump-to-signup a[b-l3wd5tknof] {
+  color: #e5deea;
+}
+
+.login-text[b-l3wd5tknof] {
+  text-align: center;
+  font-size: 2rem;
+}
