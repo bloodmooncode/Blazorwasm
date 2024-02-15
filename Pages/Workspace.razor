@@ -1,9 +1,18 @@
 @page "/workspace/{microgridId}"
 
+@using Blazorwasm.Shared
 @using Blazorwasm.Models
+@using System.Net.Http.Json
+@using System.Collections.ObjectModel
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
+@inject IDialogService DialogService
 
 <div class="full-height grid-background">
     <h3 class="text-center pt-6">Microgrid ID: @microgridId</h3>
+    <div class="d-flex flex-nowrap justify-content-end mt-4 pr-6">
+        <MudChip Icon="@Icons.Material.Filled.AddCircle" OnClick="@AddElement" Color="Color.Primary" >Add Element</MudChip>
+    </div>
     <div class="main-timeline mt-5">
         @foreach (var (element, index) in Elements.Select((element, index) => (element, index)))
         {
@@ -17,7 +26,7 @@
                         <img src="images/@(element.type).png" class="image"/>
                         <div class="element-buttons">
                             <MudIconButton class="mr-3" OnClick="@(() => OpenDrawer(Anchor.End, index))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
-                            <MudIconButton class="mr-3" OnClick="@(() => AddGrid(index))" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
+                            <MudIconButton class="mr-3" OnClick="@(() => CopyElement(index))" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                             <MudIconButton OnClick="@(() => DeleteGrid(index))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                         </div>
                     </div>
@@ -50,7 +59,7 @@
         new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.7, minimumSellingPower = 1.2}
     };  
 
-    public void AddGrid(int index)
+    public void CopyElement(int index)
     {
         // 检查索引是否在合法范围内
         if (index >= 0 && index < Elements.Count)
@@ -61,10 +70,15 @@
         else
         {
             // 处理索引越界的情况，这里可以抛出异常或者执行其他逻辑
-            Console.WriteLine("Invalid index for AddGrid");
+            Console.WriteLine("Invalid index for CopyElement");
         }
     }
-    
+
+    public void AddElement() {
+        var options = new DialogOptions {CloseButton = true, DisableBackdropClick = true};
+        DialogService.Show<AddElement_Dialog>("Input", options);
+    }
+     
     bool open;
     Anchor anchor;
     int drawIndex;

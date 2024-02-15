@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/AddElement_Dialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0FkZEVsZW1lbnRfRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/zhangyuanpu/Documents/CSharp/Blazorwasm/Shared/AddGrid_Dialog.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0FkZEdyaWRfRGlhbG9nLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

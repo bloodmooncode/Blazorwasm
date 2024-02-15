@@ -47,6 +47,7 @@
 </MudDialog>
 
 @code {
+    public Microgrid microgrid = new Microgrid();
     [CascadingParameter] MudDialogInstance MudDialog { get; set; } = new MudDialogInstance();
 
     void Submit(){
@@ -55,8 +56,4 @@
     }
      
     void Cancel() => MudDialog.Cancel();
-}
-
-@code {
-    public Microgrid microgrid = new Microgrid();
 }
