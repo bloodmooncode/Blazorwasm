@@ -7,60 +7,65 @@
 @using Blazor.Diagrams.Core.Models.Base;
 @using Blazor.Diagrams.Extensions;
 @using Blazorwasm.Models;
-
+@inject HttpClient httpClient
 
 <h3 class="mt-5">Properties Panel</h3>
 
-<div class="d-flex fs-6 fw-semibold">
-    <div class="my-5 mr-6">Element Name : @Elements[DrawerIndex].name</div>
-    <div class="my-5">Type : @Elements[DrawerIndex].type</div>
-</div>
+@if (Elements != null && Elements.Count > 0)
+{
+    <div class="d-flex fs-6 fw-semibold">
+        <div class="my-5 mr-6">Element Name : @Elements[DrawerIndex].name</div>
+        <div class="my-5">Type : @Elements[DrawerIndex].type</div>
+    </div>
 
-
-<table>
-    <tr>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @Elements[DrawerIndex].minimumBuyingPower</div></MudChip>
-        </td>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @Elements[DrawerIndex].maximumBuyingPower</div></MudChip>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @Elements[DrawerIndex].minimumSellingPower</div></MudChip>
-        </td>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @Elements[DrawerIndex].maximumSellingPower</div></MudChip>
-        </td>
-    </tr>
-</table>
-
-
-<table class="table table-striped mt-5">
-    <thead>
+    <table>
         <tr>
-            @foreach (var h in headings)
-            {
-                <th>@h</th>
-            }
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @Elements[DrawerIndex].minimumBuyingPower</div></MudChip>
+            </td>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @Elements[DrawerIndex].maximumBuyingPower</div></MudChip>
+            </td>
         </tr>
-    </thead>
+        <tr>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @Elements[DrawerIndex].minimumSellingPower</div></MudChip>
+            </td>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @Elements[DrawerIndex].maximumSellingPower</div></MudChip>
+            </td>
+        </tr>
+    </table>
 
-    <tbody>
-        @foreach (var (price, index) in @Elements[DrawerIndex].SellingPower.Select((price, index) => (price, index)))
-        {
-            <tr class="align-middle">
-            <td>
-                <div>@index</div>
-            </td>
-            <td>
-                <div>@price</div>
-            </td>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
             </tr>
-        }  
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var (price, index) in @Elements[DrawerIndex].SellingPower.Select((price, index) => (price, index)))
+            {
+                <tr class="align-middle">
+                <td>
+                    <div>@index</div>
+                </td>
+                <td>
+                    <div>@price</div>
+                </td>
+                </tr>
+            }  
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 <div class="text-center mt-5" style="color: #3b0fdb; cursor: pointer;" @onclick="jumptoDash">Go to the Visual Panel</div>
 
@@ -68,10 +73,34 @@
     [Parameter]
     public int DrawerIndex { get; set; }
     [Parameter]
+    public String MicrogridId { get; set; }
+
     public List<Element> Elements { get; set; } = new List<Element>();
 
     string[] headings = {"Time", "Value"};
     
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string url = $"/api/microgrids/{MicrogridId}/elements/all";
+            // Fetch elements from the API when the component is initialized
+            Elements = await httpClient.GetFromJsonAsync<List<Element>>(url);
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
     protected void jumptoDash() {
         NavigationManager.NavigateTo("/dashboard");
     }

@@ -90,6 +90,10 @@
 </style>
 
 @code {
+    private ObservableCollection<Microgrid> Grids;
+
+    // 手动数据
+    /* 
     ObservableCollection<Microgrid> Grids = new ObservableCollection<Microgrid> {
         new Microgrid { id = 1, userId = 1, name = "Microgrid1", timeHorizon = "1", maximumBuyingPower = 3.8, minimumBuyingPower = 2.4, maximumSellingPower = 4.2, minimumSellingPower = 1.8,
             Elements = new List<Element> {
@@ -202,7 +206,31 @@
             } 
         }
     };
-       
+    */
+
+
+    // 数据库测试数据
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Fetch microgrids from the API when the component is initialized
+            Grids = await httpClient.GetFromJsonAsync<ObservableCollection<Microgrid>>("/api/microgrids/all");
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
         
     MudDataGrid<Microgrid> dataGrid = new MudDataGrid<Microgrid>();
     bool _customizeGroupTemplate = true;
@@ -265,4 +293,5 @@
     {
         NavigationManager.NavigateTo($"/workspace/{microgridId}");
     }
+    
 }
