@@ -6,6 +6,8 @@
 @using Blazor.Diagrams.Core.Models.Base;
 @using Blazor.Diagrams.Extensions;
 @using Blazorwasm.Models;
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
 
 <MudDialog>
     <DialogContent>
@@ -25,9 +27,27 @@
     public string ButtonText = "Delete";
     public string ContentText = "Do you really want to delete this microgrid? This process cannot be undone.";
 
-    void Submit() {
-      Console.WriteLine("Grid id : " + @microgridId + " has been deleted");
-      MudDialog.Close(DialogResult.Ok(true));
+    /* void Submit()
+    {
+    Console.WriteLine("Grid id : " + @microgridId + " has been deleted");
+    MudDialog.Close(DialogResult.Ok(true));
+    } */
+    async Task Submit()
+    {
+        // 发送HTTP DELETE请求到后端的/delete/{microgridId}端点
+        var response = await httpClient.DeleteAsync("/api/microgrids/delete/" + microgridId);
+        if (response.IsSuccessStatusCode)
+        {
+            // 处理成功响应
+            MudDialog.Close(DialogResult.Ok(true));
+            // 导航到上级页面并强制重新加载
+            NavigationManager.NavigateTo("/microgrids", forceLoad: true);
+        }
+        else
+        {
+            // 处理失败响应
+            Console.WriteLine("Failed to delete grid. Error: " + response.StatusCode);
+        }
     }
     void Cancel() => MudDialog.Cancel();
 }
