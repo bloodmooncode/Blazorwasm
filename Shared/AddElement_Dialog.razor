@@ -21,52 +21,31 @@
                     <MudTextField @bind-Value="@element.type" Label="Element_Type" Variant="Variant.Outlined">
                     </MudTextField>
                 </td>
+                <td>
+                    <MudTextField @bind-Value="@element.userId" Label="Interval" Variant="Variant.Outlined">
+                    </MudTextField>
+                </td>
             </tr>
-
-            @if (element.type == "CDG") // 添加条件判断
-            {
-                <tr class="d-flex justify-content-between mb-3">
-                    <td class="flex-grow-1 pr-4">
-                        <MudTextField @bind-Value="@element.maximumBuyingPower" Label="Maximum_buying_power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                    <td class="flex-grow-1">
-                        <MudTextField @bind-Value="@element.minimumBuyingPower" Label="Minimum_buying_power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                </tr>
-                <tr class="d-flex justify-content-between">
-                    <td class="flex-grow-1 pr-4">
-                        <MudTextField @bind-Value="@element.maximumSellingPower" Label="Maximum_Selling_power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                    <td class="flex-grow-1">
-                        <MudTextField @bind-Value="@element.minimumSellingPower" Label="Minimum Selling power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                </tr>
-            }
-            @if (element.type == "RDG")
-            {
-
-            }
-            @if (element.type == "ESS")
-            {
-
-            }
-            @if (element.type == "LOAD")
-            {
-                <tr class="d-flex justify-content-between mb-3">
-                    <td class="flex-grow-1 pr-4">
-                        <MudTextField @bind-Value="@element.maximumBuyingPower" Label="Maximum_buying_power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                    <td class="flex-grow-1">
-                        <MudTextField @bind-Value="@element.minimumBuyingPower" Label="Minimum_buying_power"
-                            Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
-                    </td>
-                </tr>
-            }
+            <tr class="d-flex justify-content-between mb-3">
+                <td class="flex-grow-1 pr-4">
+                    <MudTextField @bind-Value="@element.maximumBuyingPower" Label="Maximum_buying_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                </td>
+                <td class="flex-grow-1">
+                    <MudTextField @bind-Value="@element.minimumBuyingPower" Label="Minimum_buying_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                </td>
+            </tr>
+            <tr class="d-flex justify-content-between">
+                <td class="flex-grow-1 pr-4">
+                    <MudTextField @bind-Value="@element.maximumSellingPower" Label="Maximum_Selling_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                </td>
+                <td class="flex-grow-1">
+                    <MudTextField @bind-Value="@element.minimumSellingPower" Label="Minimum Selling power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                </td>
+            </tr>            
         </table>
     </DialogContent>
 
@@ -80,11 +59,43 @@
     public Element element = new Element();
     [CascadingParameter] MudDialogInstance MudDialog { get; set; } = new MudDialogInstance();
 
-    void Submit()
+    [Parameter] public string MicrogridId { get; set; } = "";
+    /* void Submit()
     {
         Console.WriteLine("A new grid name" + @element.name + " added");
         MudDialog.Close(DialogResult.Ok(true));
-    }
+    } */
+    async Task Submit()
+    {
+        Element e = new Element
+            {
+                // 设置Element的各项属性
+                userId = element.userId,
+                name = element.name == null ? "undefined" : element.name,
+                timeHorizon = element.timeHorizon == null ? "undefined" : element.timeHorizon,
+                maximumBuyingPower = element.maximumBuyingPower,
+                minimumBuyingPower = element.minimumBuyingPower,
+                maximumSellingPower = element.maximumSellingPower,
+                minimumSellingPower = element.minimumSellingPower,
+                SellingPower = new List<Double>()
+            };
 
+        // 发送HTTP POST请求到后端的/microgridId/elements/create端点
+        var response = await httpClient.PostAsJsonAsync($"/api/microgrids/{MicrogridId}/elements/create", element);
+        if (response.IsSuccessStatusCode)
+        {
+            // 处理成功响应
+            // Console.WriteLine("Element created successfully.");
+            MudDialog.Close(DialogResult.Ok(true));
+            // 导航到上级页面并强制重新加载
+            NavigationManager.NavigateTo($"/workspace/{MicrogridId}", forceLoad: true);
+        }
+        else
+        {
+            // 处理失败响应
+            Console.WriteLine("Failed to create element. Error: " + response.StatusCode);
+        }
+    }
+   
     void Cancel() => MudDialog.Cancel();
 }

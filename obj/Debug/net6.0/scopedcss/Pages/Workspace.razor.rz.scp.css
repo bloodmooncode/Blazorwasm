@@ -34,7 +34,7 @@ body[b-sp4j8iud00],
 }
 
 .main-timeline .timeline[b-sp4j8iud00] {
-  margin-bottom: 40px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -93,8 +93,8 @@ body[b-sp4j8iud00],
 .main-timeline .element[b-sp4j8iud00] {
   width: 100%;
   margin: auto;
-  position: absolute;
-  top: 27%;
+  /* position: absolute;
+  top: 27%; */
   left: 0;
 }
 

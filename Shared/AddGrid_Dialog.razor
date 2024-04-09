@@ -69,8 +69,9 @@
         Microgrid grid = new Microgrid
             {
                 // 设置microgrid的各项属性
-                name = microgrid.name == " " ? "undifined" : microgrid.name,
-                timeHorizon = microgrid.timeHorizon == " " ? "undifined" : microgrid.timeHorizon,
+                userId = microgrid.userId,
+                name = microgrid.name == null ? "undefined" : microgrid.name,
+                timeHorizon = microgrid.timeHorizon == null ? "undefined" : microgrid.timeHorizon,
                 maximumBuyingPower = microgrid.maximumBuyingPower,
                 minimumBuyingPower = microgrid.minimumBuyingPower,
                 maximumSellingPower = microgrid.maximumSellingPower,
@@ -82,7 +83,7 @@
         {
             // 处理成功响应
             MudDialog.Close(DialogResult.Ok(true)); // 关闭对话框
-                                                    // 导航到上级页面并强制重新加载
+            // 导航到上级页面并强制重新加载
             NavigationManager.NavigateTo("/microgrids", forceLoad: true);
         }
         else

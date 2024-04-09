@@ -11,7 +11,7 @@
 <div class="full-height grid-background">
     <h3 class="text-center pt-6">Microgrid ID: @microgridId</h3>
     <div class="d-flex flex-nowrap justify-content-end mt-4 pr-6">
-        <MudChip Icon="@Icons.Material.Filled.AddCircle" OnClick="@AddElement" Color="Color.Primary" >Add Element</MudChip>
+        <MudChip Icon="@Icons.Material.Filled.AddCircle" @onclick="() => AddElement(microgridId)" Color="Color.Primary" >Add Element</MudChip>
     </div>
     <div class="main-timeline mt-5">
         @foreach (var (element, index) in Elements?.Select((element, index) => (element, index)) ?? Enumerable.Empty<(Element, int)>())
@@ -20,15 +20,15 @@
                 <div class="icon"></div>
                 <div class="element-content">
                     <div class="element-outer">
-                        <span class="element">
-                            <span class="type">@element.type</span>
-                        </span>
-                        <img src="images/@(element.type).png" class="image"/>
                         <div class="element-buttons">
                             <MudIconButton class="mr-3" OnClick="@(() => OpenDrawer(Anchor.End, index))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                             <MudIconButton class="mr-3" OnClick="@(() => CopyElement(index))" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                             <MudIconButton OnClick="@(() => DeleteGrid(index))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                         </div>
+                        <div class="element">
+                            <span class="type">@element.type</span>
+                        </div>
+                        <img src="images/@(element.type).png" class="image"/>
                     </div>
                 </div>
             </div>
@@ -100,11 +100,17 @@
         }
     }
 
-    public void AddElement() {
+    /* public void AddElement() {
         var options = new DialogOptions {CloseButton = true, DisableBackdropClick = true};
         DialogService.Show<AddElement_Dialog>("Input", options);
+    } */
+    // 在AddElement方法中传递microgridId参数
+    public void AddElement(string microgridId) {
+        var options = new DialogOptions { CloseButton = true, DisableBackdropClick = true };
+        var parameters = new DialogParameters<AddElement_Dialog> { { x => x.MicrogridId, microgridId} };
+        DialogService.Show<AddElement_Dialog>("Input", parameters, options);
     }
-     
+
     bool open;
     Anchor anchor;
     int drawIndex;
