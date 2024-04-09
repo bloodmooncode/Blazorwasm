@@ -48,17 +48,17 @@
         </thead>
 
         <tbody>
-            @foreach (var (price, index) in @Elements[DrawerIndex].SellingPower.Select((price, index) => (price, index)))
+            @foreach (var sellingPower in sellingPowers)
             {
                 <tr class="align-middle">
-                <td>
-                    <div>@index</div>
-                </td>
-                <td>
-                    <div>@price</div>
-                </td>
+                    <td>
+                        <div>@sellingPower.timeHorizon</div>
+                    </td>
+                    <td>
+                        <div>@sellingPower.sellingpower</div>
+                    </td>
                 </tr>
-            }  
+            }
         </tbody>
     </table>
 }
@@ -77,15 +77,49 @@ else
 
     public List<Element> Elements { get; set; } = new List<Element>();
 
+    private List<SellingPower> sellingPowers { get; set; } = new List<SellingPower>();
+    
     string[] headings = {"Time", "Value"};
     
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         try
         {
             string url = $"/api/microgrids/{MicrogridId}/elements/all";
             // Fetch elements from the API when the component is initialized
             Elements = await httpClient.GetFromJsonAsync<List<Element>>(url);
+            // Check if Elements list is not null and contains elements
+            if (Elements != null && Elements.Count > 0 && DrawerIndex >= 0 && DrawerIndex < Elements.Count)
+            {
+                // Get the elementId of the current selected element
+                int elementId = Elements[DrawerIndex].id;
+                
+                // Call GetSellingPowers method to fetch selling powers data
+                await GetSellingPowers(elementId);
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
+    protected async Task GetSellingPowers(int elementId)
+    {
+        try
+        {
+            string url = $"/api/elements/{elementId}/sellingPowers/all";
+            // Fetch microgrids from the API when the component is initialized
+            sellingPowers = await httpClient.GetFromJsonAsync<List<SellingPower>>(url);
+            Console.WriteLine(sellingPowers);
         }
         catch (HttpRequestException ex)
         {

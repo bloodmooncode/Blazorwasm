@@ -61,14 +61,14 @@
             if (Elements == null)
             {
                 // Handle the case where Elements is null, for example set a default value or show an error message
-                List<Element> Elements = new List<Element>
+                /* List<Element> Elements = new List<Element>
                 {
                     new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.1, minimumSellingPower = 1.1},
                     new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.9, minimumSellingPower = 1.2},
                     new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.5, minimumSellingPower = 1.1},
                     new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.0, minimumSellingPower = 1.5},
                     new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.7, minimumSellingPower = 1.2}
-                };  
+                };  */
             }
         }
         catch (HttpRequestException ex)
@@ -128,7 +128,7 @@
                 minimumBuyingPower = Elements[index].minimumBuyingPower,
                 maximumSellingPower = Elements[index].maximumSellingPower,
                 minimumSellingPower = Elements[index].minimumSellingPower,
-                SellingPower = new List<Double>()
+                sellingPowers = new List<SellingPower>()
             };
 
         // 发送HTTP POST请求到后端的/microgridId/elements/create端点
