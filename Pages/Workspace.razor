@@ -11,24 +11,24 @@
 <div class="full-height grid-background">
     <h3 class="text-center pt-6">Microgrid ID: @microgridId</h3>
     <div class="d-flex flex-nowrap justify-content-end mt-4 pr-6">
-        <MudChip Icon="@Icons.Material.Filled.AddCircle" OnClick="@AddElement" Color="Color.Primary" >Add Element</MudChip>
+        <MudChip Icon="@Icons.Material.Filled.AddCircle" @onclick="() => AddElement(microgridId)" Color="Color.Primary" >Add Element</MudChip>
     </div>
     <div class="main-timeline mt-5">
-        @foreach (var (element, index) in Elements.Select((element, index) => (element, index)))
+        @foreach (var (element, index) in Elements?.Select((element, index) => (element, index)) ?? Enumerable.Empty<(Element, int)>())
         {
             <div class="timeline">
                 <div class="icon"></div>
                 <div class="element-content">
                     <div class="element-outer">
-                        <span class="element">
-                            <span class="type">@element.type</span>
-                        </span>
-                        <img src="images/@(element.type).png" class="image"/>
                         <div class="element-buttons">
                             <MudIconButton class="mr-3" OnClick="@(() => OpenDrawer(Anchor.End, index))" Icon="@Icons.Material.Filled.Edit" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                             <MudIconButton class="mr-3" OnClick="@(() => CopyElement(index))" Icon="@Icons.Material.Filled.Add" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                             <MudIconButton OnClick="@(() => DeleteGrid(index))" Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Medium"/>
                         </div>
+                        <div class="element">
+                            <span class="type">@element.type</span>
+                        </div>
+                        <img src="images/@(element.type).png" class="image"/>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
 
     <MudDrawer @bind-Open="@open" Width="@width" Height="@height" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
         <div class="mx-5">
-            <ElementColumn DrawerIndex="@drawIndex" Elements="@Elements"></ElementColumn>
+            <ElementColumn DrawerIndex="@drawIndex" MicrogridId="@microgridId"></ElementColumn>
         </div>
     </MudDrawer>
     
@@ -50,35 +50,52 @@
     [Parameter] 
     public string microgridId { get; set; } = "";
 
-    List<Element> Elements = new List<Element>
+    private List<Element> Elements;
+    protected override async Task OnInitializedAsync()
     {
-        new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.1, minimumSellingPower = 1.1},
-        new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.9, minimumSellingPower = 1.2},
-        new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.5, minimumSellingPower = 1.1},
-        new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.0, minimumSellingPower = 1.5},
-        new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.7, minimumSellingPower = 1.2}
-    };  
-
-    public void CopyElement(int index)
-    {
-        // 检查索引是否在合法范围内
-        if (index >= 0 && index < Elements.Count)
+        try
         {
-            // 复制指定索引处的元素，并插入到列表中
-            Elements.Insert(index, Elements[index]);
+            string url = $"/api/microgrids/{microgridId}/elements/all";
+            // Fetch microgrids from the API when the component is initialized
+            Elements = await httpClient.GetFromJsonAsync<List<Element>>(url);
+            if (Elements == null)
+            {
+                // Handle the case where Elements is null, for example set a default value or show an error message
+                /* List<Element> Elements = new List<Element>
+                {
+                    new Element {name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.1, minimumSellingPower = 1.1},
+                    new Element {name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.9, minimumSellingPower = 1.2},
+                    new Element {name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.5, minimumSellingPower = 1.1},
+                    new Element {name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 4.0, minimumSellingPower = 1.5},
+                    new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2, maximumSellingPower = 3.7, minimumSellingPower = 1.2}
+                };  */
+            }
         }
-        else
+        catch (HttpRequestException ex)
         {
-            // 处理索引越界的情况，这里可以抛出异常或者执行其他逻辑
-            Console.WriteLine("Invalid index for CopyElement");
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
         }
     }
 
-    public void AddElement() {
+    /* public void AddElement() {
         var options = new DialogOptions {CloseButton = true, DisableBackdropClick = true};
         DialogService.Show<AddElement_Dialog>("Input", options);
+    } */
+    // 在AddElement方法中传递microgridId参数
+    public void AddElement(string microgridId) {
+        var options = new DialogOptions { CloseButton = true, DisableBackdropClick = true };
+        var parameters = new DialogParameters<AddElement_Dialog> { { x => x.MicrogridId, microgridId} };
+        DialogService.Show<AddElement_Dialog>("Input", parameters, options);
     }
-     
+
     bool open;
     Anchor anchor;
     int drawIndex;
@@ -99,16 +116,56 @@
         return index;
     }
 
-    public void DeleteGrid(int index) {
+    public async void CopyElement(int index)
+    {
+        Element e = new Element
+            {
+                // 设置Element的各项属性
+                type = Elements[index].type,
+                name = Elements[index].name,
+                timeHorizon = Elements[index].timeHorizon,
+                maximumBuyingPower = Elements[index].maximumBuyingPower,
+                minimumBuyingPower = Elements[index].minimumBuyingPower,
+                maximumSellingPower = Elements[index].maximumSellingPower,
+                minimumSellingPower = Elements[index].minimumSellingPower,
+                sellingPowers = new List<SellingPower>()
+            };
+
+        // 发送HTTP POST请求到后端的/microgridId/elements/create端点
+        var response = await httpClient.PostAsJsonAsync($"/api/microgrids/{microgridId}/elements/create", e);
+        if (response.IsSuccessStatusCode)
+        {
+            // 处理成功响应
+            NavigationManager.NavigateTo($"/workspace/{microgridId}", forceLoad: true);
+        }
+        else
+        {
+            // 处理失败响应
+            Console.WriteLine("Failed to create element. Error: " + response.StatusCode);
+        }
+    }
+
+    public async void DeleteGrid(int index) {
         // 检查索引是否在合法范围内
         if (index >= 0 && index < Elements.Count)
-        {
-            Elements.RemoveAt(index);
+        {   
+            // 获取该元素的唯一标识符
+            int elementId = Elements[index].id;
+            // 发送HTTP DELETE请求到后端端点
+            var response = await httpClient.DeleteAsync($"/api/microgrids/{microgridId}/elements/delete/{elementId}");
+            if (response.IsSuccessStatusCode)
+            {   
+                // 导航到上级页面并强制重新加载
+                NavigationManager.NavigateTo($"/workspace/{microgridId}", forceLoad: true);
+            } else {
+                // 处理失败响应
+                Console.WriteLine("Failed to delete grid. Error: " + response.StatusCode);
+            }
         }
         else
         {
             // 处理索引越界的情况，这里可以抛出异常或者执行其他逻辑
-            Console.WriteLine("Invalid index for DeleteGrid");
+            Console.WriteLine("Invalid index for CopyElement");
         }
     }
 }

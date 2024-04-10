@@ -6,35 +6,44 @@
 @using Blazor.Diagrams.Core.Models.Base;
 @using Blazor.Diagrams.Extensions;
 @using Blazorwasm.Models;
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
 
 <MudDialog style="width: 100%;">
     <DialogContent>
         <table style="width: 100%;">
             <tr class="d-flex justify-content-between mb-5">
                 <td class="pr-3">
-                    <MudTextField @bind-Value="@microgrid.name" Label="Microgrid_Name" Variant="Variant.Outlined"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.name" Label="Microgrid_Name" Variant="Variant.Outlined">
+                    </MudTextField>
                 </td>
                 <td class="pr-3">
-                    <MudTextField @bind-Value="@microgrid.timeHorizon" Label="Time_Horizon" Variant="Variant.Outlined"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.timeHorizon" Label="Time_Horizon" Variant="Variant.Outlined">
+                    </MudTextField>
                 </td>
                 <td>
-                    <MudTextField @bind-Value="@microgrid.userId" Label="Interval" Variant="Variant.Outlined"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.userId" Label="Interval" Variant="Variant.Outlined">
+                    </MudTextField>
                 </td>
             </tr>
             <tr class="d-flex justify-content-between mb-3">
                 <td class="flex-grow-1 pr-4">
-                    <MudTextField @bind-Value="@microgrid.maximumBuyingPower" Label="Maximum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.maximumBuyingPower" Label="Maximum_buying_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
                 </td>
                 <td class="flex-grow-1">
-                    <MudTextField @bind-Value="@microgrid.minimumBuyingPower" Label="Minimum_buying_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.minimumBuyingPower" Label="Minimum_buying_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
                 </td>
             </tr>
             <tr class="d-flex justify-content-between">
                 <td class="flex-grow-1 pr-4">
-                    <MudTextField @bind-Value="@microgrid.maximumSellingPower" Label="Maximum_Selling_power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.maximumSellingPower" Label="Maximum_Selling_power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
                 </td>
                 <td class="flex-grow-1">
-                    <MudTextField @bind-Value="@microgrid.minimumSellingPower" Label="Minimum Selling power" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+                    <MudTextField @bind-Value="@microgrid.minimumSellingPower" Label="Minimum Selling power"
+                        Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
                 </td>
             </tr>
         </table>
@@ -50,10 +59,41 @@
     public Microgrid microgrid = new Microgrid();
     [CascadingParameter] MudDialogInstance MudDialog { get; set; } = new MudDialogInstance();
 
-    void Submit(){
-        Console.WriteLine("A new grid name" + @microgrid.name + " added");
+    /* void Submit()
+    {
+    Console.WriteLine("Microgrid created successfully.");
+    Console.WriteLine("A new grid name " + @microgrid.name + " added"); // 打印新微网的名称
+    } */
+    async Task Submit()
+    {
+        Microgrid grid = new Microgrid
+            {
+                // 设置microgrid的各项属性
+                userId = microgrid.userId,
+                name = microgrid.name == null ? "undefined" : microgrid.name,
+                timeHorizon = microgrid.timeHorizon == null ? "undefined" : microgrid.timeHorizon,
+                maximumBuyingPower = microgrid.maximumBuyingPower,
+                minimumBuyingPower = microgrid.minimumBuyingPower,
+                maximumSellingPower = microgrid.maximumSellingPower,
+                minimumSellingPower = microgrid.minimumSellingPower,
+                Elements = new List<Element>()
+            };
+        var response = await httpClient.PostAsJsonAsync("/api/microgrids/create", microgrid);
+        if (response.IsSuccessStatusCode)
+        {
+            // 处理成功响应
+            MudDialog.Close(DialogResult.Ok(true)); // 关闭对话框
+            // 导航到上级页面并强制重新加载
+            NavigationManager.NavigateTo("/microgrids", forceLoad: true);
+        }
+        else
+        {
+            // 处理失败响应
+            Console.WriteLine("Failed to create microgrid. Error: " + response.StatusCode);
+        }
+        // Console.WriteLine("A new grid name" + @microgrid.name + " added");
         MudDialog.Close(DialogResult.Ok(true));
     }
-     
+
     void Cancel() => MudDialog.Cancel();
 }

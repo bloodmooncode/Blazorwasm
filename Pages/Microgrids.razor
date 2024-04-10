@@ -10,7 +10,7 @@
 <div class="full-height" style="padding-top: 50px;">
     <h2 class="px-5">Microgrids List</h2>
     <MudDataGrid class="px-5 border-none mt-6" @ref="dataGrid" MultiSelection="true" Items="@Grids" Filterable="false"
-    Hideable="true" Groupable="true" GroupExpanded="true" GroupClassFunc="GroupClassFunc">
+        Hideable="true" Groupable="true" GroupExpanded="true" GroupClassFunc="GroupClassFunc">
         <ToolBarContent>
             <div class="d-flex flex-nowrap mt-4">
                 <MudButton OnClick="@ExpandAllGroups" Color="@Color.Primary">Expand</MudButton>
@@ -18,10 +18,11 @@
             </div>
             <MudSpacer />
             <div class="d-flex flex-nowrap mt-4">
-                <MudChip Icon="@Icons.Material.Filled.AddCircle" OnClick="@AddItem" Color="Color.Primary" >Add grid</MudChip>
+                <MudChip Icon="@Icons.Material.Filled.AddCircle" OnClick="@AddDialog" Color="Color.Primary">Add grid
+                </MudChip>
             </div>
         </ToolBarContent>
-        
+
 
         <Columns>
             <PropertyColumn Property="x => x.id" Title="Id" Filterable="false" Groupable="false" />
@@ -29,36 +30,41 @@
                 <GroupTemplate>
                     <span style="font-weight:bold">
                         User : @context.Grouping.Key
-                        <MudChip Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small">total @context.Grouping.Count()</MudChip>
+                        <MudChip Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small">total
+                            @context.Grouping.Count()</MudChip>
                     </span>
                 </GroupTemplate>
             </PropertyColumn>
 
-            <PropertyColumn Property="x => x.name" Title="Name"/>
-            <PropertyColumn Property="x => x.timeHorizon" Title="Time"/>
-            <HierarchyColumn Property="x => x.Elements" Title="Elements"/>
-            <PropertyColumn Property="x => x.maximumBuyingPower" Title="MaxBuying"/>
-            <PropertyColumn Property="x => x.minimumBuyingPower" Title="MinBuying"/>
-            <PropertyColumn Property="x => x.maximumSellingPower" Title="MaxSelling"/>
-            <PropertyColumn Property="x => x.minimumSellingPower" Title="MinSelling"/>
+            <PropertyColumn Property="x => x.name" Title="Name" />
+            <PropertyColumn Property="x => x.timeHorizon" Title="Time" />
+            <HierarchyColumn Property="x => x.Elements" Title="Elements" />
+            <PropertyColumn Property="x => x.maximumBuyingPower" Title="MaxBuying" />
+            <PropertyColumn Property="x => x.minimumBuyingPower" Title="MinBuying" />
+            <PropertyColumn Property="x => x.maximumSellingPower" Title="MaxSelling" />
+            <PropertyColumn Property="x => x.minimumSellingPower" Title="MinSelling" />
 
             <TemplateColumn CellClass="d-flex justify-end">
                 <CellTemplate>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@(e => Microdetail(context.Item.id))" class="mr-3"/>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Delete" OnClick="@(e => RemoveItem(context.Item.id))" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit"
+                        OnClick="@(e => Microdetail(context.Item.id))" class="mr-3" />
+                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Delete"
+                        OnClick="@(e => DeleteDialog(context.Item.id))" />
                 </CellTemplate>
             </TemplateColumn>
 
         </Columns>
-        
+
         <ChildRowContent>
             <MudCard class="shadow-none">
                 <MudCardContent class="p-0">
                     <div class="d-flex flex-row justify-content-between">
-                        @foreach(var element in @context.Item.Elements) {
+                        @foreach (var element in @context.Item.Elements)
+                        {
                             <MudChip style="background-color: #4f0f936e;" class="mx-5">
                                 <div class="d-flex align-middle">
-                                    <img src="images/@(element.type).svg" alt="Image" style="height: 1rem; width: 1rem; color:#FFFFFF" class="mr-2"/>
+                                    <img src="images/@(element.type).svg" alt="Image"
+                                        style="height: 1rem; width: 1rem; color:#FFFFFF" class="mr-2" />
                                     <div style="color: #FFFFFF;">@($"Type: {element.type}, ID: {element.id}")</div>
                                 </div>
                             </MudChip>
@@ -77,7 +83,9 @@
 
 
 <style>
-    html, body, #app {
+    html,
+    body,
+    #app {
         height: 100%;
         margin: 0;
     }
@@ -86,124 +94,225 @@
         height: 100%;
         overflow-y: auto;
     }
-
 </style>
 
 @code {
+    private ObservableCollection<Microgrid> Grids;
+
+    // 手动数据
+    /*
     ObservableCollection<Microgrid> Grids = new ObservableCollection<Microgrid> {
-        new Microgrid { id = 1, userId = 1, name = "Microgrid1", timeHorizon = "1", maximumBuyingPower = 3.8, minimumBuyingPower = 2.4, maximumSellingPower = 4.2, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 1, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 2, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 3, timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 4, timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 5, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            }
-        },
-        new Microgrid { id = 2, userId = 2, name = "Microgrid2", timeHorizon = "2", maximumBuyingPower = 3.2, minimumBuyingPower = 2.3, maximumSellingPower = 4.1, minimumSellingPower = 1.9,
-            Elements = new List<Element> {
-                new Element {id = 6, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 7, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 8, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 9, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 10, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 11, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 3, userId = 3, name = "Microgrid3", timeHorizon = "3", maximumBuyingPower = 3.6, minimumBuyingPower = 2.2, maximumSellingPower = 4.0, minimumSellingPower = 1.1,
-            Elements = new List<Element> {
-                new Element {id = 12, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 13, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 14, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 15, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 16, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 4, userId = 4, name = "Microgrid4", timeHorizon = "4", maximumBuyingPower = 3.5, minimumBuyingPower = 1.8, maximumSellingPower = 3.2, minimumSellingPower = 1.6,
-            Elements = new List<Element> {
-                new Element {id = 17, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 18, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 19, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 20, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 21, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 5, userId = 3, name = "Microgrid5", timeHorizon = "5",  maximumBuyingPower = 3.3, minimumBuyingPower = 2.3, maximumSellingPower = 4.3, minimumSellingPower = 1.3,
-            Elements = new List<Element> {
-                new Element {id = 22, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 23, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 24, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 25, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 26, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 27, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            }
-        },
-        new Microgrid { id = 6, userId = 2, name = "Microgrid6", timeHorizon = "6", maximumBuyingPower = 4.5, minimumBuyingPower = 3.4, maximumSellingPower = 5.2, minimumSellingPower = 3.8,
-            Elements = new List<Element> {
-                new Element {id = 28, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 29, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 30, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 31, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 7, userId = 1, name = "Microgrid7", timeHorizon = "1", maximumBuyingPower = 4.8, minimumBuyingPower = 2.3, maximumSellingPower = 4.2, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 32, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 33, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 34, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 35, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 36, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9, 9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            }
-        },
-        new Microgrid { id = 8, userId = 2, name = "Microgrid8", timeHorizon = "2", maximumBuyingPower = 3.7, minimumBuyingPower = 2.4, maximumSellingPower = 4.1, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 37, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 38, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 39, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 40, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 41, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 9, userId = 3, name = "Microgrid9", timeHorizon = "3", maximumBuyingPower = 3.8, minimumBuyingPower = 2.3, maximumSellingPower = 4.2, minimumSellingPower = 1.7,
-            Elements = new List<Element> {
-                new Element {id = 42, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 43, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 44, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 45, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 46, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 10, userId = 4, name = "Microgrid10", timeHorizon = "4", maximumBuyingPower = 3.6, minimumBuyingPower = 2.4, maximumSellingPower = 4.0, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 47, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 48, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 49, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 50, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 51, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        },
-        new Microgrid { id = 11, userId = 3, name = "Microgrid11", timeHorizon = "5", maximumBuyingPower = 3.1, minimumBuyingPower = 2.4, maximumSellingPower = 3.2, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 52, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4, 88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 53, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1, 4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 54, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 55, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 56, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 57, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            }
-        },
-        new Microgrid { id = 12, userId = 2, name = "Microgrid12", timeHorizon = "6", maximumBuyingPower = 3.7, minimumBuyingPower = 2.3, maximumSellingPower = 4.1, minimumSellingPower = 1.8,
-            Elements = new List<Element> {
-                new Element {id = 58, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8, 80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 59, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6, 64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 60, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8, 40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
-                new Element {id = 61, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
-            } 
-        }
+    new Microgrid { id = 1, userId = 1, name = "Microgrid1", timeHorizon = "1", maximumBuyingPower = 3.8, minimumBuyingPower
+    = 2.4, maximumSellingPower = 4.2, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 1, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5,
+    6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 2, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9,
+    9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 3, timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 },
+    maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 4, timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5, 6.5, 7.0 },
+    maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 5, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9,
+    9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 2, userId = 2, name = "Microgrid2", timeHorizon = "2", maximumBuyingPower = 3.2, minimumBuyingPower
+    = 2.3, maximumSellingPower = 4.1, minimumSellingPower = 1.9,
+    Elements = new List<Element> {
+    new Element {id = 6, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 7, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 8, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 9, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 10, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 11, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 3, userId = 3, name = "Microgrid3", timeHorizon = "3", maximumBuyingPower = 3.6, minimumBuyingPower
+    = 2.2, maximumSellingPower = 4.0, minimumSellingPower = 1.1,
+    Elements = new List<Element> {
+    new Element {id = 12, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 13, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 14, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 15, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 16, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 4, userId = 4, name = "Microgrid4", timeHorizon = "4", maximumBuyingPower = 3.5, minimumBuyingPower
+    = 1.8, maximumSellingPower = 3.2, minimumSellingPower = 1.6,
+    Elements = new List<Element> {
+    new Element {id = 17, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 18, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 19, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 20, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 21, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 5, userId = 3, name = "Microgrid5", timeHorizon = "5", maximumBuyingPower = 3.3, minimumBuyingPower
+    = 2.3, maximumSellingPower = 4.3, minimumSellingPower = 1.3,
+    Elements = new List<Element> {
+    new Element {id = 22, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 23, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 24, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 25, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 26, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 27, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 6, userId = 2, name = "Microgrid6", timeHorizon = "6", maximumBuyingPower = 4.5, minimumBuyingPower
+    = 3.4, maximumSellingPower = 5.2, minimumSellingPower = 3.8,
+    Elements = new List<Element> {
+    new Element {id = 28, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 29, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 30, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 31, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 7, userId = 1, name = "Microgrid7", timeHorizon = "1", maximumBuyingPower = 4.8, minimumBuyingPower
+    = 2.3, maximumSellingPower = 4.2, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 32, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5,
+    6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 33, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9,
+    9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 34, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5,
+    6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 35, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 9.0, 7.9, 7.2, 6.9, 6.2, 6.2, 5.5,
+    6.5, 7.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 36, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 1.0, 4.1, 3.5, 5.1, 4.9, 6.2, 6.9,
+    9.1, 1.48 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 8, userId = 2, name = "Microgrid8", timeHorizon = "2", maximumBuyingPower = 3.7, minimumBuyingPower
+    = 2.4, maximumSellingPower = 4.1, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 37, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 38, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 39, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 40, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 41, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6, 37.8,
+    33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 9, userId = 3, name = "Microgrid9", timeHorizon = "3", maximumBuyingPower = 3.8, minimumBuyingPower
+    = 2.3, maximumSellingPower = 4.2, minimumSellingPower = 1.7,
+    Elements = new List<Element> {
+    new Element {id = 42, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 43, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 44, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 45, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 46, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 10, userId = 4, name = "Microgrid10", timeHorizon = "4", maximumBuyingPower = 3.6,
+    minimumBuyingPower = 2.4, maximumSellingPower = 4.0, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 47, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 48, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 49, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 50, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 51, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 11, userId = 3, name = "Microgrid11", timeHorizon = "5", maximumBuyingPower = 3.1,
+    minimumBuyingPower = 2.4, maximumSellingPower = 3.2, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 52, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 87.3, 83.7, 90.7, 87.0, 85.8, 85.4,
+    88.1, 81.1, 82.1, 89.5, 83.5, 85.6 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 53, name = "1", timeHorizon = "1", type = "CDG", SellingPower = { 80.6, 67.9, 37.4, 37.2, 85.9, 50.1,
+    4.9, 90.8, 93.2, 83.1, 4.4, 59.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 54, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 55, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 56, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 57, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    },
+    new Microgrid { id = 12, userId = 2, name = "Microgrid12", timeHorizon = "6", maximumBuyingPower = 3.7,
+    minimumBuyingPower = 2.3, maximumSellingPower = 4.1, minimumSellingPower = 1.8,
+    Elements = new List<Element> {
+    new Element {id = 58, name = "2", timeHorizon = "2", type = "ESS", SellingPower = { 78.9, 77.6, 81.4, 75.8, 77.7, 77.8,
+    80.2, 83.3, 85.4, 80.6, 85.5, 78.4 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 59, name = "3", timeHorizon = "1", type = "LOAD", SellingPower = { 67.2, 66.3, 65.4, 65.1, 68.0, 68.6,
+    64.8, 72.3, 66.0, 70.9, 65.9, 70.0 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 60, name = "5", timeHorizon = "3", type = "CDG", SellingPower = { 32.8, 37.6, 41.6, 38.2, 40.5, 34.8,
+    40.6, 38.2, 33.7, 38.7, 34.2, 36.3 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2},
+    new Element {id = 61, name = "4", timeHorizon = "2", type = "RDG", SellingPower = { 41.0, 33.5, 36.6, 41.1, 35.8, 36.6,
+    37.8, 33.7, 41.2, 36.3, 39.9, 36.8 }, maximumBuyingPower = 3.4, minimumBuyingPower = 1.2}
+    }
+    }
     };
-       
-        
+    */
+
+
+    // 数据库测试数据
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Fetch microgrids from the API when the component is initialized
+            Grids = await httpClient.GetFromJsonAsync<ObservableCollection<Microgrid>>("/api/microgrids/all");
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
+
     MudDataGrid<Microgrid> dataGrid = new MudDataGrid<Microgrid>();
     bool _customizeGroupTemplate = true;
     static bool _customizeGroupBy;
@@ -211,8 +320,8 @@
     private string GroupClassFunc(GroupDefinition<Microgrid> item)
     {
         return item.Grouping.Key?.ToString() == "Nonmetal" || item.Grouping.Key?.ToString() == "Other"
-                ? "mud-theme-warning"
-                : string.Empty;
+        ? "mud-theme-warning"
+        : string.Empty;
     }
 
     void ExpandAllGroups()
@@ -231,25 +340,11 @@
         dataGrid.GroupItems();
     }
 
-    int cnt = 23;
-
     private bool isVisible;
-    void AddItem()
-    {
-        AddDialog();
-        StateHasChanged();
-    }
-
-    void RemoveItem(int microgridId)
-    {
-        DeleteDialog(microgridId);
-        StateHasChanged();
-    }
-
 
     private void AddDialog()
     {
-        var options = new DialogOptions {CloseButton = true, DisableBackdropClick = true};
+        var options = new DialogOptions { CloseButton = true, DisableBackdropClick = true };
         DialogService.Show<AddGrid_Dialog>("Input", options);
     }
 
@@ -257,7 +352,7 @@
     {
         var parameters = new DialogParameters<DeleteGrid_Dialog>();
         parameters.Add(x => x.microgridId, microgridId.ToString());
-        var options = new DialogOptions {CloseButton = true, DisableBackdropClick = true};
+        var options = new DialogOptions { CloseButton = true, DisableBackdropClick = true };
         DialogService.Show<DeleteGrid_Dialog>("Delete", parameters, options);
     }
 
@@ -265,4 +360,5 @@
     {
         NavigationManager.NavigateTo($"/workspace/{microgridId}");
     }
+
 }

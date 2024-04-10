@@ -7,72 +7,203 @@
 @using Blazor.Diagrams.Core.Models.Base;
 @using Blazor.Diagrams.Extensions;
 @using Blazorwasm.Models;
-
+@inject HttpClient httpClient
 
 <h3 class="mt-5">Properties Panel</h3>
 
-<div class="d-flex fs-6 fw-semibold">
-    <div class="my-5 mr-6">Element Name : @Elements[DrawerIndex].name</div>
-    <div class="my-5">Type : @Elements[DrawerIndex].type</div>
-</div>
+@if (Elements != null && Elements.Count > 0)
+{
+    <div class="d-flex fs-6 fw-semibold">
+        <div class="my-5 mr-6">Element Name : @Elements[DrawerIndex].name</div>
+        <div class="my-5">Type : @Elements[DrawerIndex].type</div>
+    </div>
 
-
-<table>
-    <tr>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @Elements[DrawerIndex].minimumBuyingPower</div></MudChip>
-        </td>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @Elements[DrawerIndex].maximumBuyingPower</div></MudChip>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @Elements[DrawerIndex].minimumSellingPower</div></MudChip>
-        </td>
-        <td>
-            <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @Elements[DrawerIndex].maximumSellingPower</div></MudChip>
-        </td>
-    </tr>
-</table>
-
-
-<table class="table table-striped mt-5">
-    <thead>
+    <table>
         <tr>
-            @foreach (var h in headings)
-            {
-                <th>@h</th>
-            }
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @Elements[DrawerIndex].minimumBuyingPower</div></MudChip>
+            </td>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @Elements[DrawerIndex].maximumBuyingPower</div></MudChip>
+            </td>
         </tr>
-    </thead>
+        <tr>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @Elements[DrawerIndex].minimumSellingPower</div></MudChip>
+            </td>
+            <td>
+                <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @Elements[DrawerIndex].maximumSellingPower</div></MudChip>
+            </td>
+        </tr>
+    </table>
 
-    <tbody>
-        @foreach (var (price, index) in @Elements[DrawerIndex].SellingPower.Select((price, index) => (price, index)))
-        {
-            <tr class="align-middle">
-            <td>
-                <div>@index</div>
-            </td>
-            <td>
-                <div>@price</div>
-            </td>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
             </tr>
-        }  
-    </tbody>
-</table>
+        </thead>
 
-<div class="text-center mt-5" style="color: #3b0fdb; cursor: pointer;" @onclick="jumptoDash">Go to the Visual Panel</div>
+        <tbody>
+            @foreach (var sellingPower in sellingPowers)
+            {
+                <tr class="align-middle">
+                    <td>
+                        <div>@sellingPower.timeHorizon</div>
+                    </td>
+                    <td>
+                        <div>@sellingPower.sellingpower</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (sellingPowers.Count == 0) {
+        <div>
+            No Selling powers recorded...
+        </div>
+    } else {
+        <div style="border: 1px solid #ccc; background-color: #f8f9fa; padding: 10px;" class="mt-8">
+            <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" ChartOptions="@Options"/>
+        </div>
+    }
+}
+else
+{
+    <p>Loading...</p>
+}
+
+<div class="text-center mt-5" style="color: #3b0fdb; cursor: pointer;" @onclick="@(e => jumptoDash(Elements[DrawerIndex].id))">Go to the Visual Panel</div>
+
+<style>
+    .chart-x-axis-label {
+        font-size: 14px; /* 设置横轴标签的字体大小 */
+    }
+
+    .chart-y-axis-label {
+        font-size: 14px; /* 设置纵轴标签的字体大小 */
+    }
+</style>
 
 @code {
     [Parameter]
     public int DrawerIndex { get; set; }
     [Parameter]
+    public String MicrogridId { get; set; }
+
     public List<Element> Elements { get; set; } = new List<Element>();
 
-    string[] headings = {"Time", "Value"};
+    private List<SellingPower> sellingPowers { get; set; } = new List<SellingPower>();
     
-    protected void jumptoDash() {
-        NavigationManager.NavigateTo("/dashboard");
+    string[] headings = {"Time", "Value"};
+
+    protected async Task GetSellingPowers(int elementId)
+    {
+        try
+        {
+            string url = $"/api/elements/{elementId}/sellingPowers/all";
+            // Fetch microgrids from the API when the component is initialized
+            sellingPowers = await httpClient.GetFromJsonAsync<List<SellingPower>>(url);
+            Console.WriteLine(sellingPowers);
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
+    private int Index = -1; //default value cannot be 0 -> first selectedindex is 0.
+
+    public ChartOptions Options = new ChartOptions();
+    
+    // Convert sellingPowers to ChartSeries
+    public List<ChartSeries> Series { get; set; } = new List<ChartSeries>();
+
+    public string[] XAxisLabels { get; set; } 
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ConvertSellingPowersToChartSeries();
+        // Adjust Y axis ticks and style
+        Options.YAxisTicks = 1; // Set the number of ticks on the Y axis
+    }
+
+    private void ConvertSellingPowersToChartSeries()
+    {
+        if (sellingPowers != null && sellingPowers.Any())
+        {
+            // Clear existing series
+            Series.Clear();
+
+            // Create a new series for sellingPowers data
+            var sellingPowerSeries = new ChartSeries
+            {
+                Name = "Selling Powers Curve",
+                Data = sellingPowers.Select(s => s.sellingpower).ToArray() // Use sellingpower as data points
+            };
+
+            // Use timeHorizon as X axis labels
+            XAxisLabels = sellingPowers.Select(s => s.timeHorizon).ToArray();
+
+            // Add the sellingPowerSeries to Series
+            Series.Add(sellingPowerSeries);
+        }
+        else
+        {
+            // If sellingPowers is empty or null, clear Series and XAxisLabels
+            Series.Clear();
+            XAxisLabels = Array.Empty<string>();
+        }
+    }
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            string url = $"/api/microgrids/{MicrogridId}/elements/all";
+            // Fetch elements from the API when the component is initialized
+            Elements = await httpClient.GetFromJsonAsync<List<Element>>(url);
+            // Check if Elements list is not null and contains elements
+            if (Elements != null && Elements.Count > 0 && DrawerIndex >= 0 && DrawerIndex < Elements.Count)
+            {
+                // Get the elementId of the current selected element
+                int elementId = Elements[DrawerIndex].id;
+                
+                // Call GetSellingPowers method to fetch selling powers data
+                await GetSellingPowers(elementId);
+                
+                // Call ConvertSellingPowersToChartSeries method to convert sellingPowers to ChartSeries
+                ConvertSellingPowersToChartSeries();
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+
+    protected void jumptoDash(int elementId) {
+        NavigationManager.NavigateTo($"/dashboard/{elementId}");
     }
 }
