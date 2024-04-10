@@ -305,7 +305,7 @@ button[b-aof8btv1cw] {
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid;
   border-radius: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 .input-text:focus[b-aof8btv1cw] {
@@ -388,7 +388,23 @@ hr[b-aof8btv1cw] {
   height: 2px; /* 定义线的高度 */
   background-color: #ffffff; /* 定义线的颜色 */
   width: 80%; /* 定义线的宽度，可以根据需要调整 */
-  margin: 5px auto; /* 使线居中并在上下添加间距 */
+  margin: 0 auto; /* 使线居中并在上下添加间距 */
+}
+
+.jump-to-login[b-aof8btv1cw] {
+  font-size: 1rem;
+  display: flex;
+  padding-top: 2rem;
+  margin-left: 3rem;
+  margin-right: auto;
+}
+
+.jump-to-login p[b-aof8btv1cw] {
+  padding-right: 1rem;
+}
+
+.jump-to-login a[b-aof8btv1cw] {
+  color: #e5deea;
 }
 /* /Pages/Whiteboard.razor.rz.scp.css */
 .wrapper[b-v4f6il3vo6] {
