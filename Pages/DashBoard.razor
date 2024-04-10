@@ -1,11 +1,20 @@
-@page "/dashboard/"
+@using Blazorwasm.Models;
+@inject HttpClient httpClient
+
+@page "/dashboard/{elementId}"
 
 <div class="full-height px-10 mt-5">
-  <MudGrid>
-    <LineChart />
-    <DonutChart />
-    <BarChart />
-  </MudGrid>  
+  @* <LineChart /> *@
+  @if (sellingPowers.Count == 0) {
+      <div>
+          No Selling powers recorded...
+      </div>
+  } else {
+      <div style="border: 1px solid #ccc; background-color: #f8f9fa; padding: 10px;" class="mt-8">
+          <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" ChartOptions="@Options"/>
+      </div>
+  }
+
 </div>
 
 
@@ -20,3 +29,78 @@
         overflow-y: auto;
     }
 </style>
+
+@code {
+    [Parameter]
+    public String elementId { get; set; } = "";
+
+    private List<SellingPower> sellingPowers { get; set; } = new List<SellingPower>();
+
+    public ChartOptions Options = new ChartOptions();
+    
+    // Convert sellingPowers to ChartSeries
+    public List<ChartSeries> Series { get; set; } = new List<ChartSeries>();
+
+    public string[] XAxisLabels { get; set; } 
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ConvertSellingPowersToChartSeries();
+        // Adjust Y axis ticks and style
+        Options.YAxisTicks = 1; // Set the number of ticks on the Y axis
+    }
+
+    private void ConvertSellingPowersToChartSeries()
+    {
+        if (sellingPowers != null && sellingPowers.Any())
+        {
+            // Clear existing series
+            Series.Clear();
+
+            // Create a new series for sellingPowers data
+            var sellingPowerSeries = new ChartSeries
+            {
+                Name = "Selling Powers Curve",
+                Data = sellingPowers.Select(s => s.sellingpower).ToArray() // Use sellingpower as data points
+            };
+
+            // Use timeHorizon as X axis labels
+            XAxisLabels = sellingPowers.Select(s => s.timeHorizon).ToArray();
+
+            // Add the sellingPowerSeries to Series
+            Series.Add(sellingPowerSeries);
+        }
+        else
+        {
+            // If sellingPowers is empty or null, clear Series and XAxisLabels
+            Series.Clear();
+            XAxisLabels = Array.Empty<string>();
+        }
+    }
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string url = $"/api/elements/{elementId}/sellingPowers/all";
+            // Fetch microgrids from the API when the component is initialized
+            sellingPowers = await httpClient.GetFromJsonAsync<List<SellingPower>>(url);
+            // Call ConvertSellingPowersToChartSeries method to convert sellingPowers to ChartSeries
+            ConvertSellingPowersToChartSeries();
+        }
+        catch (HttpRequestException ex)
+        {
+            // Handle HTTP request exceptions
+            Console.WriteLine($"HTTP request exception occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+        catch (Exception ex)
+        {
+            // Handle other types of exceptions
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // You can also show an error message to the user or perform other actions as needed
+        }
+    }
+}
