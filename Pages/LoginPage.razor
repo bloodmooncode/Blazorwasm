@@ -1,4 +1,6 @@
 @page "/login"
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
 
 <div class="login">
   <PageTitle>login</PageTitle>
@@ -14,22 +16,66 @@
           <a href="/signup">Register one</a>
         </div>
 
-        <input type="text" class="input-text" placeholder="Email">
-        <input type="text" class="input-text" placeholder="Password">
+        <input @bind="email" type="text" class="input-text" placeholder="Email">
+        <input @bind="password" type="text" class="input-text" placeholder="Password">
+
+
+        @if(judge) {
+          <div class="fs-6 response-box">@ResponseMessage</div> 
+        }
 
         <div class="create_account">
-
-          <a class="create_btn" href="/microgrids">
+          <a class="create_btn" @onclick="Login">
             <div class = "text">
               Login
             </div>
           </a>
 
         </div>
-
       </div>
-      
     </div>
-    
 </div>
+ 
+@code {
+  private string email = "";
+  private string password = "";
+  private string ResponseMessage = ""; // 用于存储响应信息
+  private bool judge = false;
+
+    private async Task Login()
+    {
+        // 创建一个包含需要发送的属性的对象
+        var loginModel = new
+        {
+            email,
+            password
+        };
+
+        try {
+          // 发送HTTP POST请求到后端API
+          var jsonContent = System.Text.Json.JsonSerializer.Serialize(loginModel);
+          var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+          // Console.WriteLine("Content = " + content);
+          var response = await httpClient.PostAsync("/api/user/auth/login", content);
+
+          // 处理响应
+          if (response.IsSuccessStatusCode)
+          {
+              // 处理成功响应
+              NavigationManager.NavigateTo("/microgrids");
+          }
+          else
+          {
+              judge = true;
+              // 处理错误响应
+              ResponseMessage = "The account does not exist, please go to the registration page.";
+          }
+        }
+        catch (Exception ex)
+        {
+            // 处理异常
+            ResponseMessage = "An error occurred: " + ex.Message;
+        }
+    }
+}
  

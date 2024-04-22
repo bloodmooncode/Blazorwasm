@@ -1,4 +1,5 @@
 @page "/signup"
+@inject HttpClient httpClient
 
 <div class="signup">
   <PageTitle>sign up</PageTitle>
@@ -13,17 +14,21 @@
           <p style="font-size: 1rem;">Already have a account?</p>
           <a href="/login">Login</a>
         </div>
-        <input type="text" class="input-text" placeholder="Email">
-        <input type="text" class="input-text" placeholder="Password">
-        <input type="text" class="input-text" placeholder="Confirm">
+
+        <input @bind="email" type="text" class="input-text" placeholder="Email">
+        <input @bind="password" type="text" class="input-text" placeholder="Password">
+        <input @bind="confirmPassword" type="text" class="input-text" placeholder="Confirm">
 
         <div class="select_box">
-          <input type="checkbox" id="check1" class="custom-checkbox">
+          <input @bind="agreeToTerms" type="checkbox" id="check1" class="custom-checkbox">
           <label for="check1"> I have read and agree to the User Agreement and Privacy Policy.</label>
         </div>
 
+        @if(judge) {
+          <div class="fs-6 response-box">@ResponseMessage</div> 
+        }
         <div class="create_account">
-          <button class="create_btn">
+          <button class="create_btn" @onclick="CreateAccount">
             <p class="text">Create Account</p>
           </button>
         </div>
@@ -31,4 +36,49 @@
     </div>
     
 </div>
+
+@code {
+  private string email = "";
+  private string password = "";
+  private string confirmPassword = "";
+  private bool agreeToTerms = false;
+  private string ResponseMessage = ""; // 用于存储响应信息
+  private bool judge = false;
+
+    private async Task CreateAccount()
+    {
+        // 创建一个包含需要发送的属性的对象
+        var signUpModel = new
+        {
+            email,
+            password
+        };
+
+        try {
+          // 发送HTTP POST请求到后端API
+          var jsonContent = System.Text.Json.JsonSerializer.Serialize(signUpModel);
+          var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+          // Console.WriteLine("Content = " + content);
+          var response = await httpClient.PostAsync("/api/user/auth/registration", content);
+
+          // 处理响应
+          if (response.IsSuccessStatusCode)
+          {
+              judge = true;
+              // 处理成功响应
+              ResponseMessage = "Account Created successfully! Check your email to activate.";
+          }
+          else
+          {
+              // 处理错误响应
+              ResponseMessage = "Error occurred while creating account";
+          }
+        }
+        catch (Exception ex)
+        {
+            // 处理异常
+            ResponseMessage = "An error occurred: " + ex.Message;
+        }
+    }
+}
  

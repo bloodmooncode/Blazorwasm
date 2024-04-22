@@ -116,3 +116,8 @@ hr {
   text-align: center;
   font-size: 2rem;
 }
+
+.response-box {
+  margin-top: 20px;
+  color: chartreuse;
+}

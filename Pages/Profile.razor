@@ -1,4 +1,5 @@
 @page "/profile"
+@inject NavigationManager NavigationManager
 
 <div style="width: 100%; margin-top: 10%;" class="d-flex justify-content-center">
   <MudAvatar style="height:90px; width:90px;" Image="/images/profile.jpg" />
@@ -42,7 +43,7 @@
 </div>
 
 <div style="width: 100%; margin-top: 10%;" class="d-flex justify-content-center">
-  <MudButton Variant="Variant.Outlined" Color="Color.Primary" style="width: 130px; height:40px;">Sign Out</MudButton>
+  <MudButton Variant="Variant.Outlined" Color="Color.Primary" style="width: 130px; height:40px;" OnClick="signout">Sign Out</MudButton>
 </div>
 
 <style>
@@ -55,8 +56,8 @@
 </style>
 
 @code {
-    private string password { get; set; } = "1234567";
-    private string email { get; set; } = "1234567@gmail.com";
+    private string password { get; set; } = "********";
+    private string email { get; set; } = "650516npu@gmail.com";
     private string phone { get; set; } = "87654321";
 
     void modifyEmail() {
@@ -67,6 +68,9 @@
     }
     void modifyPhone() {
 
+    }
+    private void signout() {
+      NavigationManager.NavigateTo("/login");
     }
 }
 

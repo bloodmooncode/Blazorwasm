@@ -57,7 +57,7 @@ button {
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid;
   border-radius: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .input-text:focus {
@@ -158,3 +158,9 @@ hr {
 .jump-to-login a {
   color: #e5deea;
 }
+
+.response-box {
+  margin-top: 20px;
+  color: chartreuse;
+}
+

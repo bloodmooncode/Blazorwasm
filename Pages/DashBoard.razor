@@ -4,16 +4,42 @@
 @page "/dashboard/{elementId}"
 
 <div class="full-height px-10 mt-5">
-  @* <LineChart /> *@
-  @if (sellingPowers.Count == 0) {
-      <div>
-          No Selling powers recorded...
-      </div>
-  } else {
-      <div style="border: 1px solid #ccc; background-color: #f8f9fa; padding: 10px;" class="mt-8">
-          <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" ChartOptions="@Options"/>
-      </div>
-  }
+    @* <LineChart /> *@
+    @if (sellingPowers.Count == 0) {
+        <div>
+            No Selling powers recorded...
+        </div>
+    } else {
+        <div class="d-flex justify-content-center fs-5 fw-semibold">
+            <div class="my-5 mr-6">Element Name : @element.name</div>
+            <div class="my-5">Type : @element.type</div>
+        </div>    
+
+        <div class="d-flex justify-content-center fs-5 ">
+            <table>
+                <tr>
+                    <td>
+                        <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinBuying : @element.minimumBuyingPower</div></MudChip>
+                    </td>
+                    <td>
+                        <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxBuying : @element.maximumBuyingPower</div></MudChip>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <MudChip Icon="@Icons.Material.Filled.ElectricBolt" Color="Color.Success" style="margin-left: 0px;"><div>MinSelling : @element.minimumSellingPower</div></MudChip>
+                    </td>
+                    <td>
+                        <MudChip Icon="@Icons.Material.Filled.PowerSettingsNew" Color="Color.Secondary"><div>MaxSelling : @element.maximumSellingPower</div></MudChip>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="border: 1px solid #ccc; background-color: #f8f9fa; padding: 10px;" class="mt-8">
+            <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" ChartOptions="@Options"/>
+        </div>
+    }
 
 </div>
 
@@ -33,6 +59,8 @@
 @code {
     [Parameter]
     public String elementId { get; set; } = "";
+
+    private Element element { get; set; } = new Element();
 
     private List<SellingPower> sellingPowers { get; set; } = new List<SellingPower>();
 
@@ -79,11 +107,11 @@
         }
     }
     
-
     protected override async Task OnInitializedAsync()
     {
         try
         {
+            element = await httpClient.GetFromJsonAsync<Element>($"/api/microgrids/all/elements/{elementId}");
             string url = $"/api/elements/{elementId}/sellingPowers/all";
             // Fetch microgrids from the API when the component is initialized
             sellingPowers = await httpClient.GetFromJsonAsync<List<SellingPower>>(url);

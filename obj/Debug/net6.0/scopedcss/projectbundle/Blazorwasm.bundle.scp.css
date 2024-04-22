@@ -222,6 +222,11 @@ hr[b-l3wd5tknof] {
   text-align: center;
   font-size: 2rem;
 }
+
+.response-box[b-l3wd5tknof] {
+  margin-top: 20px;
+  color: chartreuse;
+}
 /* /Pages/MainPage.razor.rz.scp.css */
 .main[b-k6fzahfpzn] {
   margin: 0;
@@ -305,7 +310,7 @@ button[b-aof8btv1cw] {
   background: rgba(0, 0, 0, 0.25);
   border: 2px solid;
   border-radius: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .input-text:focus[b-aof8btv1cw] {
@@ -406,6 +411,12 @@ hr[b-aof8btv1cw] {
 .jump-to-login a[b-aof8btv1cw] {
   color: #e5deea;
 }
+
+.response-box[b-aof8btv1cw] {
+  margin-top: 20px;
+  color: chartreuse;
+}
+
 /* /Pages/Whiteboard.razor.rz.scp.css */
 .wrapper[b-v4f6il3vo6] {
   display: flex;

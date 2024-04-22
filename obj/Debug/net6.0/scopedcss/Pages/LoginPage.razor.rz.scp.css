@@ -116,3 +116,8 @@ hr[b-l3wd5tknof] {
   text-align: center;
   font-size: 2rem;
 }
+
+.response-box[b-l3wd5tknof] {
+  margin-top: 20px;
+  color: chartreuse;
+}
