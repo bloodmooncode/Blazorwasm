@@ -27,15 +27,12 @@ This project is aimed at developing a web-based GUI software for energy manageme
   - [Running the Frontend](#running-the-frontend)
 - [Backend Related](#backend-related)
   - [Keyword Definitions](#keyword-definitions)
-  - [](#)
   - [Backend Function Interface Design](#backend-function-interface-design)
   - [Backend Implementation](#backend-implementation)
 - [opcua Data Interaction](#opcua-data-interaction)
 
 ## UI Design
 Designed UI interface using `figma`, only implemented basic wireframe layout.
-
-![Alt text](./assets/UI-design.png)
 
 ## Frontend Related
 
@@ -67,8 +64,6 @@ dotnet watch run  # support hot reload
 | 3    | RDG       | Uncontrollable Renewable Distributed Generator |
 | 4    | ESS       | Energy Storage System                          |
 | 5    | SOC       | State of Charge (for ESS)                      |
-
-### 
 
 ### Backend Function Interface Design
 ![Alt text](./assets/database-tree.png)

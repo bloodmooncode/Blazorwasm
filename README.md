@@ -34,8 +34,6 @@
 ## UI 设计
 用 `figma` 设计UI界面, 只单纯实现基础线框图布局
 
-![Alt text](./assets/UI-design.png)
-
 ## 前端相关
 
 使用 `CSharp` 以及 `Blazor WebAssembly` 模板来完成项目前端逻辑
