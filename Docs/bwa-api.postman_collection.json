@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "f3aeb917-0625-45ca-a19b-f3dfd43288d0",
+		"name": "bwa-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13937801"
+	},
+	"item": [
+		{
+			"name": "microgrid",
+			"item": [
+				{
+					"name": "microgrids/create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 4,\n    \"name\": \"23\",\n    \"timeHorizon\": \"2\",\n    \"maximumBuyingPower\": 8.7,\n    \"minimumBuyingPower\": 2.1,\n    \"maximumSellingPower\": 9.2,\n    \"minimumSellingPower\": 2.5,\n    \"elements\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/microgrids/create"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/all"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/2"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/delete/id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/delete/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "element",
+			"item": [
+				{
+					"name": "microgrids/id/elements/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/1/elements/all"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/id/elements/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/1/elements/1"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/id/elements/create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"5\",\n    \"timeHorizon\": \"3\",\n    \"type\": \"CDG\",\n    \"maximumBuyingPower\": 8.2,\n    \"minimumBuyingPower\": 1.7,\n    \"maximumSellingPower\": 8.3,\n    \"minimumSellingPower\": 2.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/microgrids/1/elements/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"microgrids",
+								"1",
+								"elements",
+								"create"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "ESS",
+									"disabled": true
+								},
+								{
+									"key": "maximumBuyingPower",
+									"value": "9.32",
+									"disabled": true
+								},
+								{
+									"key": "minimumBuyingPower",
+									"value": "1.14",
+									"disabled": true
+								},
+								{
+									"key": "maximumSellingPower",
+									"value": "9.97",
+									"disabled": true
+								},
+								{
+									"key": "minimumSellingPower",
+									"value": "1.23",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/id/elements/delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/1/elements/delete/217"
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/id/elements/update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/microgrids/elements/update/204?name=5&type=RDG&maximumBuyingPower=8.21&minimumBuyingPower=1.14&maximumSellingPower=9.97&minimumSellingPower=1.23",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"microgrids",
+								"elements",
+								"update",
+								"204"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "5"
+								},
+								{
+									"key": "type",
+									"value": "RDG"
+								},
+								{
+									"key": "maximumBuyingPower",
+									"value": "8.21"
+								},
+								{
+									"key": "minimumBuyingPower",
+									"value": "1.14"
+								},
+								{
+									"key": "maximumSellingPower",
+									"value": "9.97"
+								},
+								{
+									"key": "minimumSellingPower",
+									"value": "1.23"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "microgrids/all/elements/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/microgrids/all/elements/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SellPower",
+			"item": [
+				{
+					"name": "elements/id/sellingPowers/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/elements/4/sellingPowers/all"
+					},
+					"response": []
+				},
+				{
+					"name": "elements/id/sellingPowers/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/elements/1/sellingPowers/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user/auth/registration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Email\": \"12345@163.com\",\n    \"Password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/auth/registration"
+					},
+					"response": []
+				},
+				{
+					"name": "user/auth/confirm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/auth/confirm?token=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"auth",
+								"confirm"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "otp",
+								"value": "889909",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"12345@163.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/auth/login"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
